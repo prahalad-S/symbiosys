@@ -524,8 +524,8 @@ const heroSlides = [
     heading2: 'and Get Certified',
     description:
       'Many leading universities and technology companies offer free AI courses, and we provide certificates to boost your resume and LinkedIn profile.',
-    primaryCta: { label: 'Our Work', section: 'services' },
-    secondaryCta: { label: 'Contact Us', section: 'contact' },
+    primaryCta: { label: 'Get Started', section: 'https://ai-tools-study.vercel.app/' },
+    secondaryCta: { label: 'Get Certified', section: 'https://ai-tools-study.vercel.app/' },
   },
   {
     badge: 'Slide 3 – Edit this content',
@@ -537,6 +537,7 @@ const heroSlides = [
     secondaryCta: { label: 'About Us', section: 'about' },
   },
 ];
+
 
 function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -554,6 +555,10 @@ function HeroSection() {
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9]);
 
   const scrollToSection = (id: string) => {
+    if (id.startsWith('http://') || id.startsWith('https://')) {
+      window.open(id, '_blank', 'noopener,noreferrer');
+      return;
+    }
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
