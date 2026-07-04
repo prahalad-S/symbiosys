@@ -2,6 +2,107 @@ import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { Users, Target, ShieldCheck, ArrowRight, Check } from 'lucide-react';
 import Hls from 'hls.js';
+import * as THREE from 'three';
+
+function ParticlesCanvas() {
+  const mountRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = mountRef.current;
+    if (!container) return;
+
+    // Scene & Camera
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 30;
+
+    // Renderer
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.domElement.style.display = 'block';
+    renderer.domElement.style.width = '100%';
+    renderer.domElement.style.height = '100%';
+    container.appendChild(renderer.domElement);
+
+    const group = new THREE.Group();
+    scene.add(group);
+
+    const particleCount = 200;
+    const posArray = new Float32Array(particleCount * 3);
+    for (let i = 0; i < particleCount * 3; i++) {
+      posArray[i] = (Math.random() - 0.5) * 60;
+    }
+    const particleGeo = new THREE.BufferGeometry();
+    particleGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+    const particleMesh = new THREE.Points(
+      particleGeo,
+      new THREE.PointsMaterial({
+        size: 0.12,
+        color: 0x06b6d4,
+        transparent: true,
+        opacity: 0.75,
+      })
+    );
+    group.add(particleMesh);
+
+    // Mouse parallax
+    let mouseX = 0;
+    let mouseY = 0;
+    const onMouseMove = (e: MouseEvent) => {
+      mouseX = (e.clientX / window.innerWidth) - 0.5;
+      mouseY = (e.clientY / window.innerHeight) - 0.5;
+    };
+    document.addEventListener('mousemove', onMouseMove);
+
+    // Animation loop
+    let rafId: number;
+    const animate = () => {
+      rafId = requestAnimationFrame(animate);
+
+      particleMesh.rotation.y -= 0.0005;
+
+      group.rotation.x += (mouseY * 0.4 - group.rotation.x) * 0.05;
+      group.rotation.y += (mouseX * 0.4 - group.rotation.y) * 0.05;
+
+      renderer.render(scene, camera);
+    };
+    animate();
+
+    // Resize handler
+    const onResize = () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    };
+    window.addEventListener('resize', onResize);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      document.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('resize', onResize);
+      renderer.dispose();
+      if (container.contains(renderer.domElement)) {
+        container.removeChild(renderer.domElement);
+      }
+    };
+  }, []);
+
+  return (
+    <div
+      ref={mountRef}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        pointerEvents: 'none',
+        zIndex: 1,
+      }}
+    />
+  );
+}
 
 function BackgroundVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -10,7 +111,7 @@ function BackgroundVideo() {
     const video = videoRef.current;
     if (!video) return;
 
-    const videoSrc = 'https://stream.mux.com/kimF2ha9zLrX64H00UgLGPflCzNtl1T0215MlAmeOztv8.m3u8';
+    const videoSrc = 'https://stream.mux.com/8wrHPCX2dC3msyYU9ObwqNdm00u3ViXvOSHUMRYSEe5Q.m3u8';
 
     if (Hls.isSupported()) {
       const hls = new Hls({
@@ -172,6 +273,7 @@ export default function AboutUs() {
 
   return (
     <div ref={containerRef} className="relative bg-black selection:bg-white selection:text-black min-h-screen">
+      <ParticlesCanvas />
       {/* New Hero Section */}
       <AboutHero />
 

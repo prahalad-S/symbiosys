@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import mapImg from '../assets/map.png';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Stars } from '@react-three/drei';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
@@ -499,41 +500,29 @@ function Navigation() {
 // Hero slide data – edit content here
 const heroSlides = [
   {
-    badge: 'AI Services',
-    heading1: 'Learn AI for Free',
-    heading2: 'and Get Certified',
+    badge: 'General',
+    heading1: 'Drop Your Message',
+    heading2: 'info@symbiosystech.com',
     description:
-      'Many leading universities and technology companies offer free AI courses, and we provide certificates to boost your resume and LinkedIn profile.',
-    primaryCta: { label: 'Get Started', section: 'https://ai-tools-study.vercel.app/' },
-    secondaryCta: { label: 'Get Certified', section: 'https://ai-tools-study.vercel.app/' },
+      'We would love to hear from you! Whether you have a question, need support, or want to discuss a project, our team is here to help.',
+    primaryCta: { label: 'Contact now', section: 'contact' }
   },
   {
-    badge: "Innovating Tomorrow's Technology Today",
-    heading1: 'Engineering',
-    heading2: 'Excellence',
+    badge: "Engineering",
+    heading1: 'For Engineering Services',
+    heading2: 'esd@symbiosystech.com',
     description:
-      'We deliver world-class IT solutions, engineering services, and creative animation & VFX for global enterprises. Transforming visions into reality.',
-    primaryCta: { label: 'Explore Services', section: 'services' },
-    secondaryCta: { label: 'Learn More', section: 'about' },
+      'Contact our engineering experts to discuss your project requirements and get a detailed quote.',
+    primaryCta: { label: 'Contact now', section: 'contact' }
   },
   {
-    badge: 'Animation and VFX',
-    heading1: 'Animation and VFX',
-    heading2: 'Innovation & Creativity',
+    badge: 'Main Office',
+    heading1: 'IT Park, Rushikonda',
+    heading2: 'Visakhapatnam',
     description:
-      'Our team has proficient artists in the art of animation & visual effects who manifest their creative expertise for precise work on every project.',
-    primaryCta: { label: 'Get Started', section: 'contact' },
-    secondaryCta: { label: 'About Us', section: 'about' },
-  },
-  {
-    badge: 'Publishing Services',
-    heading1: 'Publishing Services',
-    heading2: 'High-Quality Services',
-    description:
-      'We provide our clients with comprehensive, end-to-end services, delivering high quality solutions tailored to meet their unique needs.',
-    primaryCta: { label: 'Get Started', section: 'contact' },
-    secondaryCta: { label: 'About Us', section: 'about' },
-  },
+      'Alternatively, fill out the contact form below, and we will get back to you as soon as possible. We aim to respond within one business day.',
+    primaryCta: { label: 'Location', section: 'services' }
+  }
 ];
 
 
@@ -543,8 +532,8 @@ function GlobeVideoOverlay() {
   const { scrollYProgress } = useScroll();
   const x = useTransform(
     scrollYProgress,
-    [0, 0.2, 0.4, 0.6, 0.8, 1],
-    ['0vw', '25vw', '-25vw', '25vw', '-25vw', '0vw']
+    [0, 0.3, 0.6, 1],
+    ['0vw', '35vw', '-35vw', '35vw']
   );
 
   useEffect(() => {
@@ -558,12 +547,12 @@ function GlobeVideoOverlay() {
       hls.loadSource(videoSrc);
       hls.attachMedia(video);
       hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        video.play().catch(() => {});
+        video.play().catch(() => { });
       });
     } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
       video.src = videoSrc;
       video.addEventListener('loadedmetadata', () => {
-        video.play().catch(() => {});
+        video.play().catch(() => { });
       });
     }
 
@@ -580,8 +569,8 @@ function GlobeVideoOverlay() {
         muted
         loop
         playsInline
-        style={{ mixBlendMode: 'screen', x }}
-        className="w-1/2 max-w-[400px] object-contain opacity-90"
+        style={{ mixBlendMode: 'screen', x, width: '1000px', height: '10000px' }}
+        className="object-contain opacity-80"
       />
     </div>
   );
@@ -643,12 +632,12 @@ function HeroSection() {
     center: {
       x: 0,
       opacity: 1,
-      transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+      transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const },
     },
     exit: (dir: number) => ({
       x: dir > 0 ? '-100%' : '100%',
       opacity: 0,
-      transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+      transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as const },
     }),
   };
 
@@ -744,13 +733,13 @@ function HeroSection() {
                   <span>{slide.primaryCta.label}</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
-                <button
+                {/* <button
                   onClick={() => scrollToSection(slide.secondaryCta.section)}
                   className="btn-secondary flex items-center gap-2 text-base"
                 >
                   <Play className="w-4 h-4" />
                   <span>{slide.secondaryCta.label}</span>
-                </button>
+                </button> */}
               </motion.div>
             </motion.div>
           </AnimatePresence>
@@ -793,30 +782,7 @@ function HeroSection() {
         </div>
 
         {/* Stats Preview */}
-        <motion.div
-          initial={{ opacity: 0, y: 60 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto"
-        >
-          {[
-            { value: '25+', label: 'Years Experience' },
-            { value: '200+', label: 'Projects Delivered' },
-            { value: '100+', label: 'Global Clients' },
-            { value: '99%', label: 'Client Satisfaction' },
-          ].map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.7 + i * 0.1 }}
-              className="text-center"
-            >
-              <div className="text-3xl md:text-4xl font-bold font-display gradient-text-cyan">{stat.value}</div>
-              <div className="text-sm text-slate-500 mt-1">{stat.label}</div>
-            </motion.div>
-          ))}
-        </motion.div>
+
       </motion.div>
 
       {/* Scroll Indicator */}
@@ -846,57 +812,6 @@ function HeroSection() {
 }
 
 function ServicesSection() {
-  const services = [
-    {
-      icon: Cpu,
-      title: 'Learn AI & Get Certified',
-      description: 'Learn AI & Get Certified from the best in the industry. We provide training for AI, AI Development and AI tools.',
-      features: ['Claude', 'DeepSeek', 'Cursor', 'Supabase'],
-      gradient: 'from-indigo-500 to-blue-500',
-      glowColor: 'shadow-indigo-500/20',
-    },
-    {
-      icon: Film,
-      title: 'Animation & VFX',
-      description: 'World-class 2D & 3D animation, storyboarding, and visual effects for film, television, and digital media.',
-      features: ['2D/3D Animation', 'Storyboarding', 'Concept Art', 'VFX Production'],
-      gradient: 'from-pink-500 to-rose-500',
-      glowColor: 'shadow-pink-500/20',
-    },
-    {
-      icon: Beaker,
-      title: 'Testing Services',
-      description: 'Comprehensive quality assurance and testing solutions ensuring flawless software performance.',
-      features: ['QA Automation', 'Performance Testing', 'Security Testing', 'Mobile Testing'],
-      gradient: 'from-blue-500 to-cyan-500',
-      glowColor: 'shadow-blue-500/20',
-    },
-    {
-      icon: BookOpen,
-      title: 'Publishing Services',
-      description: 'End-to-end digital publishing solutions with advanced development and analysis capabilities.',
-      features: ['Digital Publishing', 'Content Development', 'Data Analysis', 'eLearning Solutions'],
-      gradient: 'from-purple-500 to-violet-500',
-      glowColor: 'shadow-purple-500/20',
-    },
-    {
-      icon: Code2,
-      title: 'IT Solutions',
-      description: 'Custom software development and IT consulting services for enterprise transformation.',
-      features: ['Custom Software', 'Cloud Solutions', 'DevOps Services', 'API Integration'],
-      gradient: 'from-amber-500 to-orange-500',
-      glowColor: 'shadow-amber-500/20',
-    },
-    {
-      icon: Cog,
-      title: 'Engineering Services',
-      description: 'Advanced engineering solutions spanning mechanical, electrical, and civil disciplines.',
-      features: ['CAD/CAM Services', 'BIM Solutions', 'Plant Design', 'Structural Analysis'],
-      gradient: 'from-emerald-500 to-teal-500',
-      glowColor: 'shadow-emerald-500/20',
-    },
-
-  ];
 
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -908,7 +823,7 @@ function ServicesSection() {
         <div className="absolute bottom-1/4 left-0 w-[400px] h-[400px] bg-blue-600/10 rounded-full blur-[150px]" />
       </div>
 
-      <div ref={containerRef} className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+      <div ref={containerRef} className="relative z-10 w-full mx-auto mask-img">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -917,406 +832,13 @@ function ServicesSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-blue-400 mb-6">
-            <Layers className="w-4 h-4" />
-            Our Expertise
-          </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-display mb-6">
-            Innovative Solutions for
-            <span className="block gradient-text">Complex Project Needs</span>
-          </h2>
-          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-            We deliver comprehensive technology services across multiple verticals,
-            combining technical excellence with creative innovation.
-          </p>
+          <img src={mapImg} style={{ width: '100%', filter: 'grayscale(1)' }} alt="" />
         </motion.div>
-
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => (
-            <motion.div
-              key={service.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="group relative"
-            >
-              <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500 blur-xl`} />
-              <div className="relative h-full glass rounded-2xl p-8 border border-slate-800 group-hover:border-slate-700 transition-colors duration-300 overflow-hidden">
-                {/* Shimmer Effect */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/5 to-transparent" />
-                </div>
-
-                {/* Icon */}
-                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-6 group-hover:scale-110 group-hover:shadow-lg ${service.glowColor} transition-all duration-300`}>
-                  <service.icon className="w-7 h-7 text-white" />
-                </div>
-
-                {/* Content */}
-                <h3 className="text-xl font-bold font-display text-white mb-3 group-hover:text-blue-400 transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-slate-400 text-sm leading-relaxed mb-6">
-                  {service.description}
-                </p>
-
-                {/* Features */}
-                <ul className="space-y-2">
-                  {service.features.map((feature) => (
-                    <li key={feature} className="flex items-center gap-2 text-sm text-slate-500">
-                      <CheckCircle2 className="w-4 h-4 text-blue-500" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Arrow */}
-                <div className="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <ArrowRight className="w-5 h-5 text-blue-400" />
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
       </div>
     </section>
   );
 }
 
-function AboutSection() {
-  const stats = [
-    { icon: Users, value: 500, suffix: '+', label: 'Team Members' },
-    { icon: Globe, value: 25, suffix: '+', label: 'Countries Served' },
-    { icon: Award, value: 50, suffix: '+', label: 'Industry Awards' },
-    { icon: TrendingUp, value: 98, suffix: '%', label: 'Success Rate' },
-  ];
-
-  return (
-    <section id="about" data-section className="relative py-32 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 z-0 dot-pattern opacity-30" />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-purple-400 mb-6">
-              <Zap className="w-4 h-4" />
-              About Us
-            </span>
-
-            <h2 className="text-4xl md:text-5xl font-bold font-display mb-6">
-              Pioneering Technology
-              <span className="block gradient-text">Excellence Since 2008</span>
-            </h2>
-
-            <div className="space-y-4 text-slate-400 leading-relaxed">
-              <p>
-                Symbiosys Technologies is a multi-vertical company specializing in IT services,
-                IT Enabled services, Engineering services, and 2D/3D Animation & VFX. Our development
-                center in India, combined with offices in the US, enables us to deliver exceptional
-                solutions to clients worldwide.
-              </p>
-              <p>
-                Since our inception, we have remained committed to delivering excellent results
-                for our clients by providing the highest quality of offshore development services
-                across various platforms. Our team of experts constantly keeps themselves abreast
-                with the latest trends in technology.
-              </p>
-            </div>
-
-            <div className="mt-8 flex flex-wrap gap-4">
-              <div className="flex items-center gap-2 text-sm text-slate-300">
-                <div className="w-2 h-2 rounded-full bg-green-500" />
-                ISO 9001:2015 Certified
-              </div>
-              <div className="flex items-center gap-2 text-sm text-slate-300">
-                <div className="w-2 h-2 rounded-full bg-blue-500" />
-                CMMI Level 3
-              </div>
-              <div className="flex items-center gap-2 text-sm text-slate-300">
-                <div className="w-2 h-2 rounded-full bg-purple-500" />
-                SOC 2 Compliant
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Visual */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="relative"
-          >
-            {/* Main Card */}
-            <div className="relative glass rounded-3xl p-8 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-purple-600/10" />
-
-              {/* Animated Grid */}
-              <div className="absolute inset-0 grid-pattern opacity-20" />
-
-              {/* Stats Grid */}
-              <div className="relative grid grid-cols-2 gap-6">
-                {stats.map((stat, index) => (
-                  <motion.div
-                    key={stat.label}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="text-center p-6 rounded-2xl bg-slate-800/50 border border-slate-700/50"
-                  >
-                    <stat.icon className="w-8 h-8 text-blue-400 mx-auto mb-3" />
-                    <div className="text-3xl font-bold font-display gradient-text">
-                      {stat.value}{stat.suffix}
-                    </div>
-                    <div className="text-sm text-slate-500 mt-1">{stat.label}</div>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Decorative Elements */}
-              <div className="absolute -top-10 -right-10 w-40 h-40 bg-blue-500/20 rounded-full blur-3xl" />
-              <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-purple-500/20 rounded-full blur-3xl" />
-            </div>
-
-            {/* Floating Badges */}
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -top-6 -left-6 glass px-4 py-2 rounded-full flex items-center gap-2"
-            >
-              <Shield className="w-4 h-4 text-green-400" />
-              <span className="text-xs font-medium text-white">Enterprise Security</span>
-            </motion.div>
-
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-              className="absolute -bottom-6 -right-6 glass px-4 py-2 rounded-full flex items-center gap-2"
-            >
-              <Globe className="w-4 h-4 text-blue-400" />
-              <span className="text-xs font-medium text-white">Global Delivery</span>
-            </motion.div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ClientsSection() {
-  const clients = [
-    'Google', 'AMD', 'Trimble', 'FIS', 'CSC', 'Kentz',
-    'Cambridge Systems', 'Reliance', 'L&T', 'Technip',
-    'Disney India', 'Prime Focus', 'Reel FX', 'Sony Television',
-    'Titmouse', 'Zagtoon', 'Framebreed', 'Grid Animation'
-  ];
-
-  return (
-    <section id="clients" data-section className="relative py-32 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-600/5 rounded-full blur-[150px]" />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-emerald-400 mb-6">
-            <Users className="w-4 h-4" />
-            Trusted By Industry Leaders
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold font-display">
-            Our <span className="gradient-text">Global Clients</span>
-          </h2>
-        </motion.div>
-
-        {/* Clients Marquee */}
-        <div className="relative">
-          {/* Gradient Overlays */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#0a0a0f] to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#0a0a0f] to-transparent z-10" />
-
-          {/* Scrolling Container */}
-          <motion.div
-            animate={{ x: [0, -1920] }}
-            transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
-            className="flex gap-8"
-          >
-            {[...clients, ...clients].map((client, index) => (
-              <div
-                key={index}
-                className="flex-shrink-0 glass px-8 py-6 rounded-xl border border-slate-800 hover:border-slate-700 transition-colors group"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300">
-                    <span className="text-sm font-bold text-white">{client.charAt(0)}</span>
-                  </div>
-                  <span className="text-lg font-semibold text-slate-300 group-hover:text-white transition-colors whitespace-nowrap">
-                    {client}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-
-        {/* Second Row - Reverse Direction */}
-        <div className="relative mt-6">
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#0a0a0f] to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#0a0a0f] to-transparent z-10" />
-
-          <motion.div
-            animate={{ x: [-1920, 0] }}
-            transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
-            className="flex gap-8"
-          >
-            {[...clients.reverse(), ...clients].map((client, index) => (
-              <div
-                key={index}
-                className="flex-shrink-0 glass px-8 py-6 rounded-xl border border-slate-800 hover:border-slate-700 transition-colors group"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center group-hover:from-purple-600 group-hover:to-pink-600 transition-all duration-300">
-                    <span className="text-sm font-bold text-white">{client.charAt(0)}</span>
-                  </div>
-                  <span className="text-lg font-semibold text-slate-300 group-hover:text-white transition-colors whitespace-nowrap">
-                    {client}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function TestimonialsSection() {
-  const testimonials = [
-    {
-      quote: "IT specialists & technicians who have developed a niche market and an appreciation for mastering solutions to complex engineering problems, and developed software solutions in profound disciplines.",
-      author: "James Wilson",
-      role: "CTO, Global Tech Solutions",
-      rating: 5,
-    },
-    {
-      quote: "Our engineers constantly keep themselves abreast with the latest trends in technology that help Symbiosys Technologies stay one step ahead of its competition in its quest for knowledge and perfection.",
-      author: "Priya Sharma",
-      role: "Engineering Director, Innovation Labs",
-      rating: 5,
-    },
-    {
-      quote: "The animation and VFX work delivered by Symbiosys exceeded our expectations. Their attention to detail and creative vision transformed our project completely.",
-      author: "Michael Chen",
-      role: "Creative Director, Studio Max",
-      rating: 5,
-    },
-  ];
-
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  return (
-    <section id="testimonials" data-section className="relative py-32 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[200px]" />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20"
-        >
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-pink-400 mb-6">
-            <Quote className="w-4 h-4" />
-            Testimonials
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold font-display">
-            What Our <span className="gradient-text">Clients Say</span>
-          </h2>
-        </motion.div>
-
-        {/* Testimonials Carousel */}
-        <div className="relative max-w-4xl mx-auto">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeIndex}
-              initial={{ opacity: 0, y: 20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              transition={{ duration: 0.5 }}
-              className="glass rounded-3xl p-8 md:p-12 border border-slate-800 relative overflow-hidden"
-            >
-              {/* Quote Icon */}
-              <div className="absolute top-8 right-8 opacity-10">
-                <Quote className="w-24 h-24 text-blue-500" />
-              </div>
-
-              {/* Stars */}
-              <div className="flex gap-1 mb-6">
-                {[...Array(testimonials[activeIndex].rating)].map((_, i) => (
-                  <Sparkles key={i} className="w-5 h-5 text-amber-400 fill-amber-400" />
-                ))}
-              </div>
-
-              {/* Quote */}
-              <blockquote className="text-xl md:text-2xl text-slate-300 leading-relaxed mb-8 relative z-10">
-                &ldquo;{testimonials[activeIndex].quote}&rdquo;
-              </blockquote>
-
-              {/* Author */}
-              <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">
-                  {testimonials[activeIndex].author.charAt(0)}
-                </div>
-                <div>
-                  <div className="font-semibold text-white">{testimonials[activeIndex].author}</div>
-                  <div className="text-sm text-slate-500">{testimonials[activeIndex].role}</div>
-                </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Navigation Dots */}
-          <div className="flex justify-center gap-3 mt-8">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveIndex(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === activeIndex
-                  ? 'bg-blue-500 w-8'
-                  : 'bg-slate-700 hover:bg-slate-600'
-                  }`}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 function ContactSection() {
   const contactInfo = [
@@ -1551,9 +1073,7 @@ export default function Contact() {
       <main>
         <HeroSection />
         <ServicesSection />
-        <AboutSection />
-        <ClientsSection />
-        <TestimonialsSection />
+
         <ContactSection />
       </main>
     </div>

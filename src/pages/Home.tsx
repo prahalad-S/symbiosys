@@ -74,7 +74,7 @@ function HeroCanvas() {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.domElement.style.display = 'block';
     renderer.domElement.style.width = '100%';
-    renderer.domElement.style.height = '100%';
+    renderer.domElement.style.height = '110%';
     container.appendChild(renderer.domElement);
 
     const group = new THREE.Group();
@@ -86,7 +86,7 @@ function HeroCanvas() {
         color: 0x2563eb,
         wireframe: true,
         transparent: true,
-        opacity: 0.18,
+        opacity: 0.25,
       })
     );
     group.add(sphere);
@@ -604,12 +604,12 @@ function HeroSection() {
     center: {
       x: 0,
       opacity: 1,
-      transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+      transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const },
     },
     exit: (dir: number) => ({
       x: dir > 0 ? '-100%' : '100%',
       opacity: 0,
-      transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+      transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as const },
     }),
   };
 
