@@ -151,6 +151,53 @@ function BackgroundVideo() {
   );
 }
 
+function BackgroundVideo2() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const videoSrc = 'https://stream.mux.com/tLkHO1qZoaaQOUeVWo8hEBeGQfySP02EPS02BmnNFyXys.m3u8';
+
+    if (Hls.isSupported()) {
+      const hls = new Hls({
+        enableWorker: true,
+        lowLatencyMode: true,
+      });
+      hls.loadSource(videoSrc);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        video.play().catch(() => { });
+      });
+
+      return () => {
+        hls.destroy();
+      };
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = videoSrc;
+      video.addEventListener('loadedmetadata', () => {
+        video.play().catch(() => { });
+      });
+    }
+  }, []);
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+      <video
+        ref={videoRef}
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="w-full h-full object-cover opacity-100"
+      />
+      {/* Dark overlay to match theme */}
+      <div className="absolute inset-0 bg-black/60" />
+    </div>
+  );
+}
+
 function AboutHero() {
   const [showEmailForm, setShowEmailForm] = useState(false);
   const [emailSubmitted, setEmailSubmitted] = useState(false);
@@ -259,6 +306,7 @@ function AboutHero() {
           </a>
         </motion.div>
       </div>
+
     </section>
   );
 }
@@ -277,40 +325,45 @@ export default function AboutUs() {
       {/* New Hero Section */}
       <AboutHero />
 
+
       {/* Rest of the Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="relative z-10 w-full mx-auto px-6 lg:px-8">
         {/* Content Section 1: The Company */}
+        <BackgroundVideo2 />
         <motion.div
           initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="mb-40 glass rounded-3xl p-10 md:p-16 border border-slate-800/50 relative overflow-hidden"
+          className="mb-40 glass p-10 md:p-16  relative overflow-hidden pb-5 border-top-0 border-start-0 border-end-0"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-transparent" />
-          <div className="relative z-10 grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="w-16 h-16 rounded-2xl bg-blue-500/20 flex items-center justify-center mb-6">
-                <ShieldCheck className="w-8 h-8 text-blue-400" />
+
+          <div className="max-w-7xl mx-auto pb-5">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-transparent" />
+            <div className="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+              <div>
+                <div className="w-16 h-16 rounded-2xl bg-blue-500/20 flex items-center justify-center mb-6">
+                  <ShieldCheck className="w-8 h-8 text-blue-400" />
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold font-display mb-6">The Company</h2>
+                <p className="text-lg text-slate-300 leading-relaxed mb-6">
+                  Symbiosys Technologies provides high-quality services and solutions to our clients worldwide. Our development center is located in India with offices in the US. The company aims at developing innovative and cost-effective end-to-end technology solutions with high performance and security.
+                </p>
+                <p className="text-lg text-slate-300 leading-relaxed">
+                  Since our inception, we have been committed to delivering excellent results for our clients. As results-oriented problem solvers, we thrive to successfully meet our client's requirements on a priority basis. We take pride in teaching the technology to everyone we talk to and feel privileged in getting them to experience it.
+                </p>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold font-display mb-6">The Company</h2>
-              <p className="text-lg text-slate-300 leading-relaxed mb-6">
-                Symbiosys Technologies provides high-quality services and solutions to our clients worldwide. Our development center is located in India with offices in the US. The company aims at developing innovative and cost-effective end-to-end technology solutions with high performance and security.
-              </p>
-              <p className="text-lg text-slate-300 leading-relaxed">
-                Since our inception, we have been committed to delivering excellent results for our clients. As results-oriented problem solvers, we thrive to successfully meet our client's requirements on a priority basis. We take pride in teaching the technology to everyone we talk to and feel privileged in getting them to experience it.
-              </p>
-            </div>
-            <div className="relative h-[400px] rounded-2xl overflow-hidden glass border border-slate-700/50 group">
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] to-transparent z-10 opacity-60" />
-              <img
-                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
-                alt="Global Network"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute bottom-8 left-8 z-20">
-                <div className="text-3xl font-bold text-white mb-2">Global Reach</div>
-                <div className="text-blue-400 font-medium">India & United States</div>
+              <div className="relative h-[400px] rounded-2xl overflow-hidden glass border border-slate-700/50 group">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] to-transparent z-10 opacity-60" />
+                <img
+                  src="src/assets/a2.jpg"
+                  alt="Global Network"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute bottom-8 left-8 z-20">
+                  <div className="text-3xl font-bold text-white mb-2">Global Reach</div>
+                  <div className="text-blue-400 font-medium">India & United States</div>
+                </div>
               </div>
             </div>
           </div>
@@ -322,33 +375,83 @@ export default function AboutUs() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="mb-40 glass rounded-3xl p-10 md:p-16 border border-slate-800/50 relative overflow-hidden"
+          className="mb-40 glass p-10 md:p-16 relative overflow- pb-5 border-0"
         >
-          <div className="absolute inset-0 bg-gradient-to-tl from-purple-900/20 to-transparent" />
-          <div className="relative z-10">
-            <div className="text-center mb-16">
-              <div className="w-16 h-16 rounded-2xl bg-purple-500/20 flex items-center justify-center mx-auto mb-6">
-                <Target className="w-8 h-8 text-purple-400" />
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold font-display mb-6">Business Strategy & Approach</h2>
-              <p className="text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
-                We help our customers focus on their core business activities by providing high-quality and low-risk solutions to complex problems.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              {[
-                { title: "Strategic Solutions", desc: "Developing strategic business solutions using onsite, offsite and offshore project execution methodologies." },
-                { title: "Customer Satisfaction", desc: "Providing consummate and laudable products aimed strictly at maximum customer satisfaction." },
-                { title: "Stringent Timelines", desc: "Maintaining strict timelines for product deployment and providing effective after-sales support." }
-              ].map((item, i) => (
-                <div key={i} className="glass p-8 rounded-2xl border border-slate-700/50 hover:bg-slate-800/50 transition-colors">
-                  <h3 className="text-xl font-bold text-white mb-4">{item.title}</h3>
-                  <p className="text-slate-400">{item.desc}</p>
+          <div className="max-w-7xl mx-auto pb-5">
+            <div className="absolute inset-0 bg-gradient-to-tl from-purple-900/20 to-transparent" />
+            <div className="relative z-10">
+              <div className="text-center mb-16">
+                <div className="w-16 h-16 rounded-2xl bg-purple-500/20 flex items-center justify-center mx-auto mb-6">
+                  <Target className="w-8 h-8 text-purple-400" />
                 </div>
-              ))}
-            </div>
-          </div>
+                <h2 className="text-3xl md:text-4xl font-bold font-display mb-6">Business Strategy & Approach</h2>
+                <p className="text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
+                  We help our customers focus on their core business activities by providing high-quality and low-risk solutions to complex problems.
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[
+                  {
+                    title: "Strategic Solutions",
+                    desc: "Developing strategic business solutions using onsite, offsite and offshore project execution methodologies.",
+                    icon: Target,
+                    gradient: 'from-blue-500 to-cyan-500',
+                    glowColor: 'shadow-blue-500/20'
+                  },
+                  {
+                    title: "Customer Satisfaction",
+                    desc: "Providing consummate and laudable products aimed strictly at maximum customer satisfaction.",
+                    icon: Users,
+                    gradient: 'from-purple-500 to-violet-500',
+                    glowColor: 'shadow-purple-500/20'
+                  },
+                  {
+                    title: "Stringent Timelines",
+                    desc: "Maintaining strict timelines for product deployment and providing effective after-sales support.",
+                    icon: ShieldCheck,
+                    gradient: 'from-amber-500 to-orange-500',
+                    glowColor: 'shadow-amber-500/20'
+                  }
+                ].map((item, i) => (
+                  <motion.div
+                    key={item.title}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: i * 0.1 }}
+                    whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                    className="group relative"
+                  >
+                    <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500 blur-xl`} />
+                    <div className="relative h-full glass rounded-2xl p-8 border border-slate-800 group-hover:border-slate-700 transition-colors duration-300 overflow-hidden">
+                      {/* Shimmer Effect */}
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+                      </div>
+
+                      {/* Icon */}
+                      <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center mb-6 group-hover:scale-110 group-hover:shadow-lg ${item.glowColor} transition-all duration-300`}>
+                        <item.icon className="w-7 h-7 text-white" />
+                      </div>
+
+                      {/* Content */}
+                      <h3 className="text-xl font-bold font-display text-white mb-3 group-hover:text-blue-400 transition-colors">
+                        {item.title}
+                      </h3>
+                      <p className="text-slate-400 text-sm leading-relaxed mb-6">
+                        {item.desc}
+                      </p>
+
+                      {/* Arrow */}
+                      <div className="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <ArrowRight className="w-5 h-5 text-blue-400" />
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div></div>
         </motion.div>
 
         {/* Content Section 3: Workforce */}
@@ -357,35 +460,37 @@ export default function AboutUs() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="glass rounded-3xl p-10 md:p-16 border border-slate-800/50 relative overflow-hidden"
+          className="glass p-10 md:p-16  relative overflow-hidden pb-5 border-0"
         >
-          <div className="absolute inset-0 bg-gradient-to-tr from-cyan-900/20 to-transparent" />
-          <div className="relative z-10 grid md:grid-cols-2 gap-12 items-center">
-            <div className="order-2 md:order-1 relative h-[400px] rounded-2xl overflow-hidden glass border border-slate-700/50 group">
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] to-transparent z-10 opacity-60" />
-              <img
-                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop"
-                alt="Our Team"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute bottom-8 left-8 z-20">
-                <div className="text-3xl font-bold text-white mb-2">Proficient Experts</div>
-                <div className="text-cyan-400 font-medium">Highly Trained Engineers</div>
+          <div className="max-w-7xl mx-auto pb-5 pt-5">
+
+            <div className="absolute inset-0 bg-gradient-to-tr from-cyan-900/20 to-transparent" />
+            <div className="relative z-10 grid md:grid-cols-2 gap-12 items-center pt-5">
+              <div className="order-2 md:order-1 relative h-[400px] rounded-2xl overflow-hidden glass border border-slate-700/50 group">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] to-transparent z-10 opacity-60" />
+                <img
+                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop"
+                  alt="Our Team"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute bottom-8 left-8 z-20">
+                  <div className="text-3xl font-bold text-white mb-2">Proficient Experts</div>
+                  <div className="text-cyan-400 font-medium">Highly Trained Engineers</div>
+                </div>
               </div>
-            </div>
-            <div className="order-1 md:order-2">
-              <div className="w-16 h-16 rounded-2xl bg-cyan-500/20 flex items-center justify-center mb-6">
-                <Users className="w-8 h-8 text-cyan-400" />
+              <div className="order-1 md:order-2">
+                <div className="w-16 h-16 rounded-2xl bg-cyan-500/20 flex items-center justify-center mb-6">
+                  <Users className="w-8 h-8 text-cyan-400" />
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold font-display mb-6">Our Workforce</h2>
+                <p className="text-lg text-slate-300 leading-relaxed mb-6">
+                  The proficient workforce at Symbiosys Technologies comprises highly trained engineers, IT specialists & technicians who have developed a niche market and an appreciation for mastering solutions to complex engineering problems.
+                </p>
+                <p className="text-lg text-slate-300 leading-relaxed">
+                  Our engineers constantly keep themselves abreast with the latest trends in technology. We encourage growth and development within the organization to cater to the demands of a constantly expanding domain and market diversification.
+                </p>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold font-display mb-6">Our Workforce</h2>
-              <p className="text-lg text-slate-300 leading-relaxed mb-6">
-                The proficient workforce at Symbiosys Technologies comprises highly trained engineers, IT specialists & technicians who have developed a niche market and an appreciation for mastering solutions to complex engineering problems.
-              </p>
-              <p className="text-lg text-slate-300 leading-relaxed">
-                Our engineers constantly keep themselves abreast with the latest trends in technology. We encourage growth and development within the organization to cater to the demands of a constantly expanding domain and market diversification.
-              </p>
-            </div>
-          </div>
+            </div></div>
         </motion.div>
       </div>
     </div>
