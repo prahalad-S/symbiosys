@@ -823,7 +823,7 @@ function ServicesSection() {
         <div className="absolute bottom-1/4 left-0 w-[400px] h-[400px] bg-blue-600/10 rounded-full blur-[150px]" />
       </div>
 
-      <div ref={containerRef} className="relative z-10 w-full mx-auto mask-img">
+      <div ref={containerRef} className="relative z-10 w-full mx-auto">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}

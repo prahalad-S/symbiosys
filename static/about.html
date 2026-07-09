@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="About Symbiosys Technologies - Pioneering technology excellence since 2008." />
+    <meta name="theme-color" content="#0a0a0f" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap-compat.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <title>About Us | Symbiosys Technologies</title>
+    <script
+        type="importmap"> { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.185.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.185.0/examples/jsm/" } } </script>
+
+</head>
+
+<body>
+    <div class="relative min-h-screen bg-[#0a0a0f] text-white overflow-x-hidden flex flex-col">
+        <div class="noise-overlay"></div>
+
+        <nav id="main-nav"
+            class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-6 bg-transparent nav-entrance">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="flex items-center justify-between">
+                    <a href="index.html" class="flex items-center gap-3 group">
+                        <div
+                            class="w-40 h-auto flex items-center justify-center group-hover:shadow-blue-500/30 transition-shadow duration-300">
+                            <img src="../assets/symbiosys-logo.png" alt="Symbiosys Logo" class="w-full"
+                                onerror="this.src='assets/symbiosys-logo.png'">
+                        </div>
+
+                    </a>
+                    <div class="hidden lg:flex items-center gap-8">
+                        <a href="index.html" data-nav-link="home"
+                            class="relative text-sm font-medium transition-colors duration-300 text-slate-400 hover:text-white">Home</a>
+                        <div class="nav-dropdown-wrapper">
+                            <a href="services.html" data-nav-link="services"
+                                class="relative text-sm font-medium transition-colors duration-300 text-slate-400 hover:text-white flex items-center gap-1">Services <i data-lucide="chevron-down" class="w-4 h-4"></i></a>
+                            <div class="nav-dropdown">
+                                <a href="#" class="nav-dropdown-item">Engineering Services</a>
+                                <a href="#" class="nav-dropdown-item">Animation & VFX</a>
+                                <a href="#" class="nav-dropdown-item">Geospatial Services</a>
+                                <a href="#" class="nav-dropdown-item">Testing Services</a>
+                                <div class="nav-sub-dropdown-wrapper">
+                                    <a href="#" class="nav-dropdown-item flex justify-between items-center">Publishing Services</a>
+                                    <div class="nav-sub-dropdown">
+                                        <a href="#" class="nav-dropdown-item">Digital Conversion</a>
+                                        <a href="#" class="nav-dropdown-item">Editorial Services</a>
+                                        <a href="#" class="nav-dropdown-item">Project Management</a>
+                                        <a href="#" class="nav-dropdown-item">Typesetting</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="about.html" data-nav-link="about"
+                            class="relative text-sm font-medium transition-colors duration-300 text-slate-400 hover:text-white">About</a>
+                        <a href="contact.html" data-nav-link="contact"
+                            class="relative text-sm font-medium transition-colors duration-300 text-slate-400 hover:text-white">Contact</a>
+                    </div>
+
+                    <div class="hidden lg:flex items-center gap-4">
+                        <a href="contact.html" class="btn-primary text-sm"><span>Get Started</span></a>
+                    </div>
+
+                    <button id="mobile-menu-btn" class="lg:hidden p-2 text-white" aria-label="Toggle menu">
+                        <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
+                        <i data-lucide="x" id="close-icon" class="w-6 h-6 hidden"></i>
+                    </button>
+                </div>
+
+            </div>
+
+        </nav>
+
+        <div id="mobile-menu" class="mobile-menu-overlay lg:hidden">
+            <div id="mobile-menu-backdrop" class="absolute inset-0 bg-slate-950/95 backdrop-blur-xl"></div>
+
+            <div class="mobile-menu-content relative flex flex-col items-center justify-center h-full gap-8">
+                <a href="index.html" data-close-mobile-menu
+                    class="mobile-menu-link text-2xl font-display font-semibold text-white hover:text-blue-400 transition-colors">Home</a>
+                <a href="services.html" data-close-mobile-menu
+                    class="mobile-menu-link text-2xl font-display font-semibold text-white hover:text-blue-400 transition-colors">Services</a>
+                <a href="about.html" data-close-mobile-menu
+                    class="mobile-menu-link text-2xl font-display font-semibold text-white hover:text-blue-400 transition-colors">About</a>
+                <a href="contact.html" data-close-mobile-menu
+                    class="mobile-menu-link text-2xl font-display font-semibold text-white hover:text-blue-400 transition-colors">Contact</a>
+                <a href="contact.html" data-close-mobile-menu
+                    class="mobile-menu-link mobile-menu-cta btn-primary mt-4 inline-flex"><span>Get Started</span></a>
+            </div>
+
+        </div>
+
+        <main class="flex-grow">
+            <div class="relative bg-black selection:bg-white selection:text-black min-h-screen">
+                <div id="particles-canvas-container"
+                    style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:1"></div>
+
+                <!-- About Hero -->
+
+                <section
+                    class="relative min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-12 overflow-hidden mask-img">
+                    <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+                        <video autoplay muted loop playsinline class="w-full h-full object-cover"
+                            data-hls-src="https://stream.mux.com/kimF2ha9zLrX64H00UgLGPflCzNtl1T0215MlAmeOztv8.m3u8"></video>
+                        <div class="absolute inset-0 opacity-60"></div>
+
+                    </div>
+
+                    <div
+                        class="relative z-10 text-center max-w-7xl mx-auto flex flex-col items-center justify-center gap-12">
+                        <h1 class="text-4xl md:text-7xl lg:text-8xl font-bold font-display leading-tight mb-6">
+                            <span class="block text-white">Build a No-Code AI apps</span>
+                            <span class="block gradient-text">Play Video Demo</span>
+                        </h1>
+
+
+                    </div>
+
+                </section>
+
+                <div class="relative z-10 w-full mx-auto">
+                    <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+                        <video autoplay muted loop playsinline class="w-full h-full object-cover"
+                            data-hls-src="https://stream.mux.com/tLkHO1qZoaaQOUeVWo8hEBeGQfySP02EPS02BmnNFyXys.m3u8"></video>
+                        <div class="absolute inset-0 opacity-60"></div>
+
+                    </div>
+                    <!-- The Company -->
+
+                    <div class="mb-40 glass p-10 md:p-16 relative overflow-hidden pb-5 reveal-up border-0">
+
+
+                        <div class="w-full mx-auto px-6 lg:px-8 pb-5 relative z-10 company-img mask-img-2">
+                            <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-transparent bg-black">
+                            </div>
+
+                            <div class="absolute top-1/2 left-0 right-0 -translate-y-1/2 max-w-7xl mx-auto">
+                                <div class="w-30 bg-blue-500/20 flex items-center justify-start gap-3 mb-6">
+                                    <i data-lucide="shield-check" class="w-8 h-8 text-blue-400"></i>
+                                    <h2 class="text-3xl md:text-4xl font-bold font-display mb-0">The Company</h2>
+                                </div>
+
+
+                                <p class="text-lg text-slate-300 leading-relaxed mb-6">Symbiosys Technologies
+                                    provides high-quality services and solutions to our clients worldwide. Our
+                                    development center is located in India with offices in the US. The company aims
+                                    at developing innovative and cost-effective end-to-end technology solutions with
+                                    high performance and security.</p>
+                                <p class="text-lg text-slate-300 leading-relaxed">Since our inception, we have been
+                                    committed to delivering excellent results for our clients. As results-oriented
+                                    problem solvers, we thrive to successfully meet our client's requirements on a
+                                    priority basis. We take pride in teaching the technology to everyone we talk to
+                                    and feel privileged in getting them to experience it.</p>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <!-- Strategy -->
+
+                    <div class="mb-40 glass p-10 md:p-16 relative overflow-hidden pb-5 reveal-up">
+                        <div class="max-w-7xl mx-auto px-6 lg:px-8 pb-5">
+                            <div class="absolute inset-0"></div>
+
+                            <div class="relative z-10">
+                                <div class="text-center mb-16">
+                                    <div
+                                        class="w-16 h-16 rounded-2xl bg-purple-500/20 flex items-center justify-center mx-auto mb-6">
+                                        <i data-lucide="target" class="w-8 h-8 text-purple-400"></i>
+                                    </div>
+
+                                    <h2 class="text-3xl md:text-4xl font-bold font-display mb-6">Business Strategy &
+                                        Approach</h2>
+                                    <p class="text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">We help our
+                                        customers focus on their core business activities by providing high-quality and
+                                        low-risk solutions to complex problems.</p>
+                                </div>
+
+                                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-reveal">
+                                    <div class="group relative">
+                                        <div
+                                            class="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-500 opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500 blur-xl">
+                                        </div>
+
+                                        <div
+                                            class="relative h-full glass rounded-2xl p-8 border border-slate-800 group-hover:border-slate-700 transition-colors duration-300 overflow-hidden">
+                                            <div
+                                                class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:shadow-lg shadow-blue-500/20 transition-all duration-300">
+                                                <i data-lucide="target" class="w-7 h-7 text-white"></i>
+                                            </div>
+
+                                            <h3
+                                                class="text-xl font-bold font-display text-white mb-3 group-hover:text-blue-400 transition-colors">
+                                                Strategic Solutions</h3>
+                                            <p class="text-slate-400 text-sm leading-relaxed mb-6">Developing strategic
+                                                business solutions using onsite, offsite and offshore project execution
+                                                methodologies.</p>
+                                            <div
+                                                class="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                                <i data-lucide="arrow-right" class="w-5 h-5 text-blue-400"></i>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="group relative">
+                                        <div
+                                            class="absolute inset-0 bg-gradient-to-br from-purple-500 to-violet-500 opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500 blur-xl">
+                                        </div>
+
+                                        <div
+                                            class="relative h-full glass rounded-2xl p-8 border border-slate-800 group-hover:border-slate-700 transition-colors duration-300 overflow-hidden">
+                                            <div
+                                                class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-violet-500 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:shadow-lg shadow-purple-500/20 transition-all duration-300">
+                                                <i data-lucide="users" class="w-7 h-7 text-white"></i>
+                                            </div>
+
+                                            <h3
+                                                class="text-xl font-bold font-display text-white mb-3 group-hover:text-blue-400 transition-colors">
+                                                Customer Satisfaction</h3>
+                                            <p class="text-slate-400 text-sm leading-relaxed mb-6">Providing consummate
+                                                and laudable products aimed strictly at maximum customer satisfaction.
+                                            </p>
+                                            <div
+                                                class="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                                <i data-lucide="arrow-right" class="w-5 h-5 text-blue-400"></i>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="group relative">
+                                        <div
+                                            class="absolute inset-0 bg-gradient-to-br from-amber-500 to-orange-500 opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500 blur-xl">
+                                        </div>
+
+                                        <div
+                                            class="relative h-full glass rounded-2xl p-8 border border-slate-800 group-hover:border-slate-700 transition-colors duration-300 overflow-hidden">
+                                            <div
+                                                class="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:shadow-lg shadow-amber-500/20 transition-all duration-300">
+                                                <i data-lucide="shield-check" class="w-7 h-7 text-white"></i>
+                                            </div>
+
+                                            <h3
+                                                class="text-xl font-bold font-display text-white mb-3 group-hover:text-blue-400 transition-colors">
+                                                Stringent Timelines</h3>
+                                            <p class="text-slate-400 text-sm leading-relaxed mb-6">Maintaining strict
+                                                timelines for product deployment and providing effective after-sales
+                                                support.</p>
+                                            <div
+                                                class="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                                <i data-lucide="arrow-right" class="w-5 h-5 text-blue-400"></i>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Workforce -->
+
+                    <div class="glass p-10 md:p-16 relative overflow-hidden pb-5 reveal-up">
+                        <div class="max-w-7xl mx-auto px-6 lg:px-8 pb-5 pt-5">
+                            <div class="absolute inset-0"></div>
+
+                            <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center pt-5">
+                                <div
+                                    class="order-2 md:order-1 relative h-[400px] rounded-2xl overflow-hidden glass border border-slate-700/50 group">
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] to-transparent z-10 opacity-60">
+                                    </div>
+
+                                    <img src="../assets/a3.jpg" alt="Our Team"
+                                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                                    <div class="relative h-[400px] overflow-hidden glassgroup">
+
+                                        <div class="absolute bottom-8 left-8 z-20">
+                                            <div class="text-3xl font-bold text-white mb-2">Global Reach</div>
+                                            <div class="text-blue-400 font-medium">India & United States</div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="order-1 md:order-2">
+                                    <div
+                                        class="w-16 h-16 rounded-2xl bg-cyan-500/20 flex items-center justify-center mb-6">
+                                        <i data-lucide="users" class="w-8 h-8 text-cyan-400"></i>
+                                    </div>
+
+                                    <h2 class="text-3xl md:text-4xl font-bold font-display mb-6">Our Workforce</h2>
+                                    <p class="text-lg text-slate-300 leading-relaxed mb-6">The proficient workforce at
+                                        Symbiosys Technologies comprises highly trained engineers, IT specialists &
+                                        technicians who have developed a niche market and an appreciation for mastering
+                                        solutions to complex engineering problems.</p>
+                                    <p class="text-lg text-slate-300 leading-relaxed">Our engineers constantly keep
+                                        themselves abreast with the latest trends in technology. We encourage growth and
+                                        development within the organization to cater to the demands of a constantly
+                                        expanding domain and market diversification.</p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+        <footer class="relative py-20 border-t border-slate-800/50 mt-auto">
+            <div class="absolute inset-0 z-0 overflow-hidden">
+                <div class="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-blue-600/5 rounded-full blur-[150px]">
+                </div>
+
+                <div class="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-purple-600/5 rounded-full blur-[150px]">
+                </div>
+
+            </div>
+
+            <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="grid md:grid-cols-2 lg:grid-cols-6 gap-12 mb-16">
+                    <div class="lg:col-span-2">
+                        <a href="index.html" class="flex items-center gap-3 mb-6">
+                            <div class="w-40 h-auto flex items-center justify-center"><img
+                                    src="../assets/symbiosys-logo.png" alt="Symbiosys Logo" class="w-full"
+                                    onerror="this.src='assets/symbiosys-logo.png'"></div>
+                        </a>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">Delivering world-class technology
+                            solutions across IT, engineering, and creative services for global enterprises since 2008.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="#"
+                                class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"><span
+                                    class="text-xs font-bold">L</span></a>
+                            <a href="#"
+                                class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"><span
+                                    class="text-xs font-bold">T</span></a>
+                            <a href="#"
+                                class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"><span
+                                    class="text-xs font-bold">Y</span></a>
+                            <a href="#"
+                                class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"><span
+                                    class="text-xs font-bold">G</span></a>
+                        </div>
+
+                    </div>
+
+                    <div>
+                        <h4 class="text-white font-semibold mb-4 capitalize">services</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Animation
+                                    & VFX</a></li>
+                            <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Testing
+                                    Services</a></li>
+                            <li><a href="#"
+                                    class="text-sm text-slate-400 hover:text-white transition-colors">Publishing</a>
+                            </li>
+                            <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">IT
+                                    Solutions</a></li>
+                            <li><a href="#"
+                                    class="text-sm text-slate-400 hover:text-white transition-colors">Engineering</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="text-white font-semibold mb-4 capitalize">company</h4>
+                        <ul class="space-y-3">
+                            <li><a href="about.html"
+                                    class="text-sm text-slate-400 hover:text-white transition-colors">About Us</a></li>
+                            <li><a href="#"
+                                    class="text-sm text-slate-400 hover:text-white transition-colors">Careers</a></li>
+                            <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Blog</a>
+                            </li>
+                            <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Press</a>
+                            </li>
+                            <li><a href="#"
+                                    class="text-sm text-slate-400 hover:text-white transition-colors">Partners</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="text-white font-semibold mb-4 capitalize">resources</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#"
+                                    class="text-sm text-slate-400 hover:text-white transition-colors">Documentation</a>
+                            </li>
+                            <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Case
+                                    Studies</a></li>
+                            <li><a href="#"
+                                    class="text-sm text-slate-400 hover:text-white transition-colors">Whitepapers</a>
+                            </li>
+                            <li><a href="#"
+                                    class="text-sm text-slate-400 hover:text-white transition-colors">Webinars</a></li>
+                            <li><a href="#"
+                                    class="text-sm text-slate-400 hover:text-white transition-colors">Support</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="text-white font-semibold mb-4 capitalize">legal</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Privacy
+                                    Policy</a></li>
+                            <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Terms of
+                                    Service</a></li>
+                            <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Cookie
+                                    Policy</a></li>
+                            <li><a href="#"
+                                    class="text-sm text-slate-400 hover:text-white transition-colors">Security</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div
+                    class="pt-8 border-t border-slate-800/50 flex flex-col md:flex-row items-center justify-between gap-4">
+                    <p class="text-sm text-slate-500">&copy; <span id="footer-year"></span> Symbiosys Technologies. All
+                        rights reserved.</p>
+                    <div class="flex items-center gap-4"><a href="#"
+                            class="text-sm text-slate-400 hover:text-white transition-colors">Privacy</a><a href="#"
+                            class="text-sm text-slate-400 hover:text-white transition-colors">Terms</a><a href="#"
+                            class="text-sm text-slate-400 hover:text-white transition-colors">Cookies</a></div>
+
+                </div>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.6.16/dist/hls.min.js"></script>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script type="module" src="js/about.js"></script>
+
+</body>
+
+</html>

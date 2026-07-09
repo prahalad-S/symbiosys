@@ -1,0 +1,1041 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Symbiosys Technologies - World-class IT solutions, engineering services, and creative animation & VFX for global enterprises." />
+  <meta name="theme-color" content="#0a0a0f" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap-compat.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <title>Symbiosys Technologies | Engineering Excellence</title>
+  <script
+    type="importmap"> { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.185.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.185.0/examples/jsm/" } } </script>
+
+</head>
+
+<body>
+  <div class="relative min-h-screen bg-[#0a0a0f] text-white overflow-x-hidden flex flex-col">
+    <div class="noise-overlay"></div>
+
+    <!-- Navigation -->
+
+    <nav id="main-nav"
+      class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-6 bg-transparent nav-entrance">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="flex items-center justify-between">
+          <a href="index.html" class="flex items-center gap-3 group">
+            <div
+              class="w-40 h-auto flex items-center justify-center group-hover:shadow-blue-500/30 transition-shadow duration-300">
+              <img src="assets/symbiosys-logo.png" alt="Symbiosys Logo" class="w-full"
+                onerror="this.src='../assets/symbiosys-logo.png'">
+            </div>
+
+          </a>
+          <div class="hidden lg:flex items-center gap-8">
+            <a href="index.html" data-nav-link="home"
+              class="relative text-sm font-medium transition-colors duration-300 text-slate-400 hover:text-white">Home</a>
+            <div class="nav-dropdown-wrapper">
+              <a href="services.html" data-nav-link="services"
+                class="relative text-sm font-medium transition-colors duration-300 text-slate-400 hover:text-white flex items-center gap-1">Services <i data-lucide="chevron-down" class="w-4 h-4"></i></a>
+              <div class="nav-dropdown">
+                <a href="#" class="nav-dropdown-item">Engineering Services</a>
+                <a href="#" class="nav-dropdown-item">Animation & VFX</a>
+                <a href="#" class="nav-dropdown-item">Geospatial Services</a>
+                <a href="#" class="nav-dropdown-item">Testing Services</a>
+                <div class="nav-sub-dropdown-wrapper">
+                  <a href="#" class="nav-dropdown-item flex justify-between items-center">Publishing Services</a>
+                  <div class="nav-sub-dropdown">
+                    <a href="#" class="nav-dropdown-item">Digital Conversion</a>
+                    <a href="#" class="nav-dropdown-item">Editorial Services</a>
+                    <a href="#" class="nav-dropdown-item">Project Management</a>
+                    <a href="#" class="nav-dropdown-item">Typesetting</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a href="about.html" data-nav-link="about"
+              class="relative text-sm font-medium transition-colors duration-300 text-slate-400 hover:text-white">About</a>
+            <a href="contact.html" data-nav-link="contact"
+              class="relative text-sm font-medium transition-colors duration-300 text-slate-400 hover:text-white">Contact</a>
+          </div>
+
+          <div class="hidden lg:flex items-center gap-4">
+            <a href="contact.html" class="btn-primary text-sm"><span>Get Started</span></a>
+          </div>
+
+          <button id="mobile-menu-btn" class="lg:hidden p-2 text-white" aria-label="Toggle menu">
+            <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
+            <i data-lucide="x" id="close-icon" class="w-6 h-6 hidden"></i>
+          </button>
+        </div>
+
+      </div>
+
+    </nav>
+
+    <!-- Mobile Menu -->
+
+    <div id="mobile-menu" class="mobile-menu-overlay lg:hidden">
+      <div id="mobile-menu-backdrop" class="absolute inset-0 bg-slate-950/95 backdrop-blur-xl"></div>
+
+      <div class="mobile-menu-content relative flex flex-col items-center justify-center h-full gap-8">
+        <a href="index.html" data-close-mobile-menu
+          class="mobile-menu-link text-2xl font-display font-semibold text-white hover:text-blue-400 transition-colors">Home</a>
+        <a href="services.html" data-close-mobile-menu
+          class="mobile-menu-link text-2xl font-display font-semibold text-white hover:text-blue-400 transition-colors">Services</a>
+        <a href="about.html" data-close-mobile-menu
+          class="mobile-menu-link text-2xl font-display font-semibold text-white hover:text-blue-400 transition-colors">About</a>
+        <a href="contact.html" data-close-mobile-menu
+          class="mobile-menu-link text-2xl font-display font-semibold text-white hover:text-blue-400 transition-colors">Contact</a>
+        <a href="contact.html" data-close-mobile-menu
+          class="mobile-menu-link mobile-menu-cta btn-primary mt-4 inline-flex"><span>Get Started</span></a>
+      </div>
+
+    </div>
+
+    <main class="flex-grow">
+      <div class="relative min-h-screen overflow-x-hidden">
+        <div id="canvas-container"
+          style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none;">
+        </div>
+
+        <!-- Hero Section -->
+
+        <section id="hero" data-section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+          <div id="neural-network-canvas" class="absolute inset-0 z-0"></div>
+
+          <div class="absolute inset-0 z-10">
+            <div
+              class="absolute top-0 left-0 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[150px] animate-pulse-glow">
+            </div>
+
+            <div
+              class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[150px] animate-pulse-glow"
+              style="animation-delay: 2s"></div>
+
+            <div
+              class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-cyan-600/10 rounded-full blur-[200px]">
+            </div>
+
+          </div>
+
+          <div class="absolute inset-0 z-10 grid-pattern opacity-30"></div>
+
+          <div class="hero-parallax-content relative z-20 w-full max-w-7xl mx-auto px-6 lg:px-8">
+            <div id="hero-carousel-track" class="hero-carousel-track">
+
+              <!-- Slide 1 -->
+
+              <div class="hero-slide" data-slide="0">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8">
+                  <i data-lucide="sparkles" class="w-4 h-4 text-blue-400"></i>
+                  <span class="text-sm font-medium text-slate-300">AI Services</span>
+                </div>
+
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold font-display leading-tight mb-6">
+                  <span class="block text-white">Learn AI for Free</span>
+                  <span class="block gradient-text">and Get Certified</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-400 max-w-2hxl mx-auto mb-12 leading-relaxed">Many leading
+                  universities and technology companies offer free AI courses, and we provide certificates to boost your
+                  resume and LinkedIn profile.</p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <button data-cta-section="https://ai-tools-study.vercel.app/"
+                    class="btn-primary group flex items-center gap-2 text-lg"><span>Get Started</span><i
+                      data-lucide="arrow-right"
+                      class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i></button>
+                  <button data-cta-section="https://ai-tools-study.vercel.app/"
+                    class="btn-secondary flex items-center gap-2 text-lg"><i data-lucide="play"
+                      class="w-4 h-4"></i><span>Get Certified</span></button>
+                </div>
+
+              </div>
+
+              <!-- Slide 2 -->
+
+              <div class="hero-slide" data-slide="1">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8">
+                  <i data-lucide="sparkles" class="w-4 h-4 text-blue-400"></i>
+                  <span class="text-sm font-medium text-slate-300">Innovating Tomorrow's Technology Today</span>
+                </div>
+
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold font-display leading-tight mb-6">
+                  <span class="block text-white">Engineering</span>
+                  <span class="block gradient-text">Excellence</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-400 max-w-2hxl mx-auto mb-12 leading-relaxed">We deliver
+                  world-class IT solutions, engineering services, and creative animation & VFX for global enterprises.
+                  Transforming visions into reality.</p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <button data-cta-section="services"
+                    class="btn-primary group flex items-center gap-2 text-lg"><span>Explore Services</span><i
+                      data-lucide="arrow-right"
+                      class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i></button>
+                  <button data-cta-section="about" class="btn-secondary flex items-center gap-2 text-lg"><i
+                      data-lucide="play" class="w-4 h-4"></i><span>Learn More</span></button>
+                </div>
+
+              </div>
+
+              <!-- Slide 3 -->
+
+              <div class="hero-slide" data-slide="2">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8">
+                  <i data-lucide="sparkles" class="w-4 h-4 text-blue-400"></i>
+                  <span class="text-sm font-medium text-slate-300">Animation and VFX</span>
+                </div>
+
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold font-display leading-tight mb-6">
+                  <span class="block text-white">Animation and VFX</span>
+                  <span class="block gradient-text">Innovation & Creativity</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-400 max-w-2hxl mx-auto mb-12 leading-relaxed">Our team has
+                  proficient artists in the art of animation & visual effects who manifest their creative expertise for
+                  precise work on every project.</p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <button data-cta-section="contact" class="btn-primary group flex items-center gap-2 text-lg"><span>Get
+                      Started</span><i data-lucide="arrow-right"
+                      class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i></button>
+                  <button data-cta-section="about" class="btn-secondary flex items-center gap-2 text-lg"><i
+                      data-lucide="play" class="w-4 h-4"></i><span>About Us</span></button>
+                </div>
+
+              </div>
+
+              <!-- Slide 4 -->
+
+              <div class="hero-slide" data-slide="3">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8">
+                  <i data-lucide="sparkles" class="w-4 h-4 text-blue-400"></i>
+                  <span class="text-sm font-medium text-slate-300">Publishing Services</span>
+                </div>
+
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold font-display leading-tight mb-6">
+                  <span class="block text-white">Publishing Services</span>
+                  <span class="block gradient-text">High-Quality Services</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-400 max-w-2hxl mx-auto mb-12 leading-relaxed">We provide our
+                  clients with comprehensive, end-to-end services, delivering high quality solutions tailored to meet
+                  their unique needs.</p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <button data-cta-section="contact" class="btn-primary group flex items-center gap-2 text-lg"><span>Get
+                      Started</span><i data-lucide="arrow-right"
+                      class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i></button>
+                  <button data-cta-section="about" class="btn-secondary flex items-center gap-2 text-lg"><i
+                      data-lucide="play" class="w-4 h-4"></i><span>About Us</span></button>
+                </div>
+
+              </div>
+
+            </div>
+
+            <button id="hero-prev-slide" aria-label="Previous slide"
+              class="absolute left-0 top-1/2 -translate-y-1/2 z-30 flex items-center justify-center w-12 h-12 rounded-full glass border border-white/10 text-white hover:bg-white/10 hover:border-white/30 hover:scale-110 transition-all duration-300 shadow-lg"
+              style="margin-left: -0.5rem">
+              <i data-lucide="chevron-right" class="w-5 h-5 rotate-180"></i>
+            </button>
+            <button id="hero-next-slide" aria-label="Next slide"
+              class="absolute right-0 top-1/2 -translate-y-1/2 z-30 flex items-center justify-center w-12 h-12 rounded-full glass border border-white/10 text-white hover:bg-white/10 hover:border-white/30 hover:scale-110 transition-all duration-300 shadow-lg"
+              style="margin-right: -0.5rem">
+              <i data-lucide="chevron-right" class="w-5 h-5"></i>
+            </button>
+            <div class="flex items-center justify-center gap-3 mt-10">
+              <button
+                class="hero-dot w-2.5 h-2.5 rounded-full bg-slate-600 hover:bg-slate-400 transition-all duration-300"
+                aria-label="Go to slide 1"></button>
+              <button
+                class="hero-dot w-2.5 h-2.5 rounded-full bg-slate-600 hover:bg-slate-400 transition-all duration-300"
+                aria-label="Go to slide 2"></button>
+              <button
+                class="hero-dot w-2.5 h-2.5 rounded-full bg-slate-600 hover:bg-slate-400 transition-all duration-300"
+                aria-label="Go to slide 3"></button>
+              <button
+                class="hero-dot w-2.5 h-2.5 rounded-full bg-slate-600 hover:bg-slate-400 transition-all duration-300"
+                aria-label="Go to slide 4"></button>
+            </div>
+
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+              <div class="text-center">
+                <div class="text-3xl md:text-4xl font-bold font-display gradient-text-cyan">25+</div>
+                <div class="text-sm text-slate-500 mt-1">Years Experience</div>
+              </div>
+
+              <div class="text-center">
+                <div class="text-3xl md:text-4xl font-bold font-display gradient-text-cyan">200+</div>
+                <div class="text-sm text-slate-500 mt-1">Projects Delivered</div>
+              </div>
+
+              <div class="text-center">
+                <div class="text-3xl md:text-4xl font-bold font-display gradient-text-cyan">100+</div>
+                <div class="text-sm text-slate-500 mt-1">Global Clients</div>
+              </div>
+
+              <div class="text-center">
+                <div class="text-3xl md:text-4xl font-bold font-display gradient-text-cyan">99%</div>
+                <div class="text-sm text-slate-500 mt-1">Client Satisfaction</div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20">
+            <div class="flex flex-col items-center gap-2">
+              <span class="text-xs text-slate-500 uppercase tracking-widest">Scroll</span>
+              <div class="w-6 h-10 rounded-full border-2 border-slate-600 flex items-start justify-center p-1">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-500 scroll-dot-bounce"></div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- Services Section -->
+
+        <section id="services" data-section class="relative py-32 overflow-hidden">
+          <div class="absolute inset-0 z-0">
+            <div class="absolute top-1/4 right-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[150px]"></div>
+
+            <div class="absolute bottom-1/4 left-0 w-[400px] h-[400px] bg-blue-600/10 rounded-full blur-[150px]"></div>
+
+          </div>
+
+          <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-20 reveal-up">
+              <span
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-blue-400 mb-6">
+                <i data-lucide="layers" class="w-4 h-4"></i> Our Expertise </span>
+              <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold font-display mb-6">Innovative Solutions for<span
+                  class="block gradient-text">Complex Project Needs</span></h2>
+              <p class="text-lg text-slate-400 max-w-2xl mx-auto">We deliver comprehensive technology services across
+                multiple verticals, combining technical excellence with creative innovation.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-reveal">
+
+              <!-- Service cards -->
+
+              <div class="group relative">
+                <div
+                  class="absolute inset-0 bg-gradient-to-br from-indigo-500 to-blue-500 opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500 blur-xl">
+                </div>
+
+                <div
+                  class="relative h-full glass rounded-2xl p-8 border border-slate-800 group-hover:border-slate-700 transition-colors duration-300 overflow-hidden">
+                  <div
+                    class="w-14 h-14 rounded-xl bg-gradient-to-br from-indigo-500 to-blue-500 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:shadow-lg shadow-indigo-500/20 transition-all duration-300">
+                    <i data-lucide="cpu" class="w-7 h-7 text-white"></i>
+                  </div>
+
+                  <h3
+                    class="text-xl font-bold font-display text-white mb-3 group-hover:text-blue-400 transition-colors">
+                    Learn AI & Get Certified</h3>
+                  <p class="text-slate-400 text-sm leading-relaxed mb-6">Learn AI & Get Certified from the best in the
+                    industry. We provide training for AI, AI Development and AI tools.</p>
+                  <ul class="space-y-2">
+                    <li class="flex items-center gap-2 text-sm text-slate-500"><i data-lucide="check-circle-2"
+                        class="w-4 h-4 text-blue-500"></i>Claude</li>
+                    <li class="flex items-center gap-2 text-sm text-slate-500"><i data-lucide="check-circle-2"
+                        class="w-4 h-4 text-blue-500"></i>DeepSeek</li>
+                    <li class="flex items-center gap-2 text-sm text-slate-500"><i data-lucide="check-circle-2"
+                        class="w-4 h-4 text-blue-500"></i>Cursor</li>
+                    <li class="flex items-center gap-2 text-sm text-slate-500"><i data-lucide="check-circle-2"
+                        class="w-4 h-4 text-blue-500"></i>Supabase</li>
+                  </ul>
+
+                  <div
+                    class="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <i data-lucide="arrow-right" class="w-5 h-5 text-blue-400"></i>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="group relative">
+                <div
+                  class="absolute inset-0 bg-gradient-to-br from-pink-500 to-rose-500 opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500 blur-xl">
+                </div>
+
+                <div
+                  class="relative h-full glass rounded-2xl p-8 border border-slate-800 group-hover:border-slate-700 transition-colors duration-300 overflow-hidden">
+                  <div
+                    class="w-14 h-14 rounded-xl bg-gradient-to-br from-pink-500 to-rose-500 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:shadow-lg shadow-pink-500/20 transition-all duration-300">
+                    <i data-lucide="film" class="w-7 h-7 text-white"></i>
+                  </div>
+
+                  <h3
+                    class="text-xl font-bold font-display text-white mb-3 group-hover:text-blue-400 transition-colors">
+                    Animation & VFX</h3>
+                  <p class="text-slate-400 text-sm leading-relaxed mb-6">World-class 2D & 3D animation, storyboarding,
+                    and visual effects for film, television, and digital media.</p>
+                  <ul class="space-y-2">
+                    <li class="flex items-center gap-2 text-sm text-slate-500"><i data-lucide="check-circle-2"
+                        class="w-4 h-4 text-blue-500"></i>2D/3D Animation</li>
+                    <li class="flex items-center gap-2 text-sm text-slate-500"><i data-lucide="check-circle-2"
+                        class="w-4 h-4 text-blue-500"></i>Storyboarding</li>
+                    <li class="flex items-center gap-2 text-sm text-slate-500"><i data-lucide="check-circle-2"
+                        class="w-4 h-4 text-blue-500"></i>Concept Art</li>
+                    <li class="flex items-center gap-2 text-sm text-slate-500"><i data-lucide="check-circle-2"
+                        class="w-4 h-4 text-blue-500"></i>VFX Production</li>
+                  </ul>
+
+                  <div
+                    class="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <i data-lucide="arrow-right" class="w-5 h-5 text-blue-400"></i>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="group relative">
+                <div
+                  class="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-500 opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500 blur-xl">
+                </div>
+
+                <div
+                  class="relative h-full glass rounded-2xl p-8 border border-slate-800 group-hover:border-slate-700 transition-colors duration-300 overflow-hidden">
+                  <div
+                    class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:shadow-lg shadow-blue-500/20 transition-all duration-300">
+                    <i data-lucide="beaker" class="w-7 h-7 text-white"></i>
+                  </div>
+
+                  <h3
+                    class="text-xl font-bold font-display text-white mb-3 group-hover:text-blue-400 transition-colors">
+                    Testing Services</h3>
+                  <p class="text-slate-400 text-sm leading-relaxed mb-6">Comprehensive quality assurance and testing
+                    solutions ensuring flawless software performance.</p>
+                  <ul class="space-y-2">
+                    <li class="flex items-center gap-2 text-sm text-slate-500"><i data-lucide="check-circle-2"
+                        class="w-4 h-4 text-blue-500"></i>QA Automation</li>
+                    <li class="flex items-center gap-2 text-sm text-slate-500"><i data-lucide="check-circle-2"
+                        class="w-4 h-4 text-blue-500"></i>Performance Testing</li>
+                    <li class="flex items-center gap-2 text-sm text-slate-500"><i data-lucide="check-circle-2"
+                        class="w-4 h-4 text-blue-500"></i>Security Testing</li>
+                    <li class="flex items-center gap-2 text-sm text-slate-500"><i data-lucide="check-circle-2"
+                        class="w-4 h-4 text-blue-500"></i>Mobile Testing</li>
+                  </ul>
+
+                  <div
+                    class="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <i data-lucide="arrow-right" class="w-5 h-5 text-blue-400"></i>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="group relative">
+                <div
+                  class="absolute inset-0 bg-gradient-to-br from-purple-500 to-violet-500 opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500 blur-xl">
+                </div>
+
+                <div
+                  class="relative h-full glass rounded-2xl p-8 border border-slate-800 group-hover:border-slate-700 transition-colors duration-300 overflow-hidden">
+                  <div
+                    class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-violet-500 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:shadow-lg shadow-purple-500/20 transition-all duration-300">
+                    <i data-lucide="book-open" class="w-7 h-7 text-white"></i>
+                  </div>
+
+                  <h3
+                    class="text-xl font-bold font-display text-white mb-3 group-hover:text-blue-400 transition-colors">
+                    Publishing Services</h3>
+                  <p class="text-slate-400 text-sm leading-relaxed mb-6">End-to-end digital publishing solutions with
+                    advanced development and analysis capabilities.</p>
+                  <ul class="space-y-2">
+                    <li class="flex items-center gap-2 text-sm text-slate-500"><i data-lucide="check-circle-2"
+                        class="w-4 h-4 text-blue-500"></i>Digital Publishing</li>
+                    <li class="flex items-center gap-2 text-sm text-slate-500"><i data-lucide="check-circle-2"
+                        class="w-4 h-4 text-blue-500"></i>Content Development</li>
+                    <li class="flex items-center gap-2 text-sm text-slate-500"><i data-lucide="check-circle-2"
+                        class="w-4 h-4 text-blue-500"></i>Data Analysis</li>
+                    <li class="flex items-center gap-2 text-sm text-slate-500"><i data-lucide="check-circle-2"
+                        class="w-4 h-4 text-blue-500"></i>eLearning Solutions</li>
+                  </ul>
+
+                  <div
+                    class="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <i data-lucide="arrow-right" class="w-5 h-5 text-blue-400"></i>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="group relative">
+                <div
+                  class="absolute inset-0 bg-gradient-to-br from-amber-500 to-orange-500 opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500 blur-xl">
+                </div>
+
+                <div
+                  class="relative h-full glass rounded-2xl p-8 border border-slate-800 group-hover:border-slate-700 transition-colors duration-300 overflow-hidden">
+                  <div
+                    class="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:shadow-lg shadow-amber-500/20 transition-all duration-300">
+                    <i data-lucide="code-2" class="w-7 h-7 text-white"></i>
+                  </div>
+
+                  <h3
+                    class="text-xl font-bold font-display text-white mb-3 group-hover:text-blue-400 transition-colors">
+                    IT Solutions</h3>
+                  <p class="text-slate-400 text-sm leading-relaxed mb-6">Custom software development and IT consulting
+                    services for enterprise transformation.</p>
+                  <ul class="space-y-2">
+                    <li class="flex items-center gap-2 text-sm text-slate-500"><i data-lucide="check-circle-2"
+                        class="w-4 h-4 text-blue-500"></i>Custom Software</li>
+                    <li class="flex items-center gap-2 text-sm text-slate-500"><i data-lucide="check-circle-2"
+                        class="w-4 h-4 text-blue-500"></i>Cloud Solutions</li>
+                    <li class="flex items-center gap-2 text-sm text-slate-500"><i data-lucide="check-circle-2"
+                        class="w-4 h-4 text-blue-500"></i>DevOps Services</li>
+                    <li class="flex items-center gap-2 text-sm text-slate-500"><i data-lucide="check-circle-2"
+                        class="w-4 h-4 text-blue-500"></i>API Integration</li>
+                  </ul>
+
+                  <div
+                    class="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <i data-lucide="arrow-right" class="w-5 h-5 text-blue-400"></i>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="group relative">
+                <div
+                  class="absolute inset-0 bg-gradient-to-br from-emerald-500 to-teal-500 opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500 blur-xl">
+                </div>
+
+                <div
+                  class="relative h-full glass rounded-2xl p-8 border border-slate-800 group-hover:border-slate-700 transition-colors duration-300 overflow-hidden">
+                  <div
+                    class="w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:shadow-lg shadow-emerald-500/20 transition-all duration-300">
+                    <i data-lucide="cog" class="w-7 h-7 text-white"></i>
+                  </div>
+
+                  <h3
+                    class="text-xl font-bold font-display text-white mb-3 group-hover:text-blue-400 transition-colors">
+                    Engineering Services</h3>
+                  <p class="text-slate-400 text-sm leading-relaxed mb-6">Advanced engineering solutions spanning
+                    mechanical, electrical, and civil disciplines.</p>
+                  <ul class="space-y-2">
+                    <li class="flex items-center gap-2 text-sm text-slate-500"><i data-lucide="check-circle-2"
+                        class="w-4 h-4 text-blue-500"></i>CAD/CAM Services</li>
+                    <li class="flex items-center gap-2 text-sm text-slate-500"><i data-lucide="check-circle-2"
+                        class="w-4 h-4 text-blue-500"></i>BIM Solutions</li>
+                    <li class="flex items-center gap-2 text-sm text-slate-500"><i data-lucide="check-circle-2"
+                        class="w-4 h-4 text-blue-500"></i>Plant Design</li>
+                    <li class="flex items-center gap-2 text-sm text-slate-500"><i data-lucide="check-circle-2"
+                        class="w-4 h-4 text-blue-500"></i>Structural Analysis</li>
+                  </ul>
+
+                  <div
+                    class="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <i data-lucide="arrow-right" class="w-5 h-5 text-blue-400"></i>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- About Section -->
+
+        <section id="about" data-section class="relative py-32 overflow-hidden">
+          <div class="absolute inset-0 z-0 dot-pattern opacity-30"></div>
+
+          <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+              <div class="reveal-left">
+                <span
+                  class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-purple-400 mb-6"><i
+                    data-lucide="zap" class="w-4 h-4"></i> About Us</span>
+                <h2 class="text-4xl md:text-5xl font-bold font-display mb-6">Pioneering Technology<span
+                    class="block gradient-text">Excellence Since 2008</span></h2>
+                <div class="space-y-4 text-slate-400 leading-relaxed">
+                  <p>Symbiosys Technologies is a multi-vertical company specializing in IT services, IT Enabled
+                    services, Engineering services, and 2D/3D Animation & VFX. Our development center in India, combined
+                    with offices in the US, enables us to deliver exceptional solutions to clients worldwide.</p>
+                  <p>Since our inception, we have remained committed to delivering excellent results for our clients by
+                    providing the highest quality of offshore development services across various platforms. Our team of
+                    experts constantly keeps themselves abreast with the latest trends in technology.</p>
+                </div>
+
+                <div class="mt-8 flex flex-wrap gap-4">
+                  <div class="flex items-center gap-2 text-sm text-slate-300">
+                    <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                    ISO 9001:2015 Certified
+                  </div>
+
+                  <div class="flex items-center gap-2 text-sm text-slate-300">
+                    <div class="w-2 h-2 rounded-full bg-blue-500"></div>
+                    CMMI Level 3
+                  </div>
+
+                  <div class="flex items-center gap-2 text-sm text-slate-300">
+                    <div class="w-2 h-2 rounded-full bg-purple-500"></div>
+                    SOC 2 Compliant
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="relative reveal-right">
+                <div class="relative glass rounded-3xl p-8 overflow-hidden">
+                  <div class="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20"></div>
+
+                  <div class="absolute inset-0 grid-pattern opacity-30"></div>
+
+                  <div class="relative grid grid-cols-2 gap-6">
+                    <div class="text-center p-6 rounded-2xl bg-slate-800/50 border border-slate-700/50"><i
+                        data-lucide="users" class="w-8 h-8 text-blue-400 mx-auto mb-3"></i>
+                      <div class="text-3xl font-bold font-display gradient-text">500+</div>
+                      <div class="text-sm text-slate-500 mt-1">Team Members</div>
+                    </div>
+
+                    <div class="text-center p-6 rounded-2xl bg-slate-800/50 border border-slate-700/50"><i
+                        data-lucide="globe" class="w-8 h-8 text-blue-400 mx-auto mb-3"></i>
+                      <div class="text-3xl font-bold font-display gradient-text">25+</div>
+                      <div class="text-sm text-slate-500 mt-1">Countries Served</div>
+                    </div>
+
+                    <div class="text-center p-6 rounded-2xl bg-slate-800/50 border border-slate-700/50"><i
+                        data-lucide="award" class="w-8 h-8 text-blue-400 mx-auto mb-3"></i>
+                      <div class="text-3xl font-bold font-display gradient-text">50+</div>
+                      <div class="text-sm text-slate-500 mt-1">Industry Awards</div>
+                    </div>
+
+                    <div class="text-center p-6 rounded-2xl bg-slate-800/50 border border-slate-700/50"><i
+                        data-lucide="trending-up" class="w-8 h-8 text-blue-400 mx-auto mb-3"></i>
+                      <div class="text-3xl font-bold font-display gradient-text">98%</div>
+                      <div class="text-sm text-slate-500 mt-1">Success Rate</div>
+                    </div>
+
+                  </div>
+
+                  <div class="absolute -top-10 -right-10 w-40 h-40 bg-blue-500/20 rounded-full blur-3xl"></div>
+
+                  <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-purple-500/20 rounded-full blur-3xl"></div>
+
+                </div>
+
+                <div
+                  class="absolute -top-6 -left-6 glass px-4 py-2 rounded-full flex items-center gap-2 float-badge-up"><i
+                    data-lucide="shield" class="w-4 h-4 text-green-400"></i><span
+                    class="text-xs font-medium text-white">Enterprise Security</span></div>
+
+                <div
+                  class="absolute -bottom-6 -right-6 glass px-4 py-2 rounded-full flex items-center gap-2 float-badge-down">
+                  <i data-lucide="globe" class="w-4 h-4 text-blue-400"></i><span
+                    class="text-xs font-medium text-white">Global Delivery</span>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- Clients Section -->
+
+        <section id="clients" data-section class="relative py-32 overflow-hidden">
+          <div class="absolute inset-0 z-0">
+            <div
+              class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-600/5 rounded-full blur-[150px]">
+            </div>
+          </div>
+
+          <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16 reveal-up">
+              <span
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-emerald-400 mb-6"><i
+                  data-lucide="users" class="w-4 h-4"></i> Trusted By Industry Leaders</span>
+              <h2 class="text-4xl md:text-5xl font-bold font-display">Our <span class="gradient-text">Global
+                  Clients</span></h2>
+            </div>
+
+            <div class="relative">
+              <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#0a0a0f] to-transparent z-10">
+              </div>
+
+              <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#0a0a0f] to-transparent z-10">
+              </div>
+
+              <div class="marquee-track-left" id="clients-marquee-1"></div>
+
+            </div>
+
+            <div class="relative mt-6">
+              <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#0a0a0f] to-transparent z-10">
+              </div>
+
+              <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#0a0a0f] to-transparent z-10">
+              </div>
+
+              <div class="marquee-track-right" id="clients-marquee-2"></div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- Testimonials Section -->
+
+        <section id="testimonials" data-section class="relative py-32 overflow-hidden">
+          <div class="absolute inset-0 z-0">
+            <div
+              class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[200px]">
+            </div>
+          </div>
+
+          <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-20 reveal-up">
+              <span
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-pink-400 mb-6"><i
+                  data-lucide="quote" class="w-4 h-4"></i> Testimonials</span>
+              <h2 class="text-4xl md:text-5xl font-bold font-display">What Our <span class="gradient-text">Clients
+                  Say</span></h2>
+            </div>
+
+            <div id="testimonials-carousel" class="relative max-w-4xl mx-auto grid">
+              <div
+                class="testimonial-slide glass rounded-3xl p-8 md:p-12 border border-slate-800 relative overflow-hidden">
+                <div class="absolute top-8 right-8 opacity-10"><i data-lucide="quote"
+                    class="w-24 h-24 text-blue-500"></i></div>
+
+                <div class="flex gap-1 mb-6"><i data-lucide="sparkles"
+                    class="w-5 h-5 text-amber-400 fill-amber-400"></i><i data-lucide="sparkles"
+                    class="w-5 h-5 text-amber-400 fill-amber-400"></i><i data-lucide="sparkles"
+                    class="w-5 h-5 text-amber-400 fill-amber-400"></i><i data-lucide="sparkles"
+                    class="w-5 h-5 text-amber-400 fill-amber-400"></i><i data-lucide="sparkles"
+                    class="w-5 h-5 text-amber-400 fill-amber-400"></i></div>
+
+                <blockquote class="text-xl md:text-2xl text-slate-300 leading-relaxed mb-8 relative z-10">&ldquo;IT
+                  specialists & technicians who have developed a niche market and an appreciation for mastering
+                  solutions to complex engineering problems, and developed software solutions in profound
+                  disciplines.&rdquo;</blockquote>
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">
+                    J</div>
+                  <div>
+                    <div class="font-semibold text-white">James Wilson</div>
+                    <div class="text-sm text-slate-500">CTO, Global Tech Solutions</div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div
+                class="testimonial-slide glass rounded-3xl p-8 md:p-12 border border-slate-800 relative overflow-hidden">
+                <div class="absolute top-8 right-8 opacity-10"><i data-lucide="quote"
+                    class="w-24 h-24 text-blue-500"></i></div>
+
+                <div class="flex gap-1 mb-6"><i data-lucide="sparkles"
+                    class="w-5 h-5 text-amber-400 fill-amber-400"></i><i data-lucide="sparkles"
+                    class="w-5 h-5 text-amber-400 fill-amber-400"></i><i data-lucide="sparkles"
+                    class="w-5 h-5 text-amber-400 fill-amber-400"></i><i data-lucide="sparkles"
+                    class="w-5 h-5 text-amber-400 fill-amber-400"></i><i data-lucide="sparkles"
+                    class="w-5 h-5 text-amber-400 fill-amber-400"></i></div>
+
+                <blockquote class="text-xl md:text-2xl text-slate-300 leading-relaxed mb-8 relative z-10">&ldquo;Our
+                  engineers constantly keep themselves abreast with the latest trends in technology that help Symbiosys
+                  Technologies stay one step ahead of its competition in its quest for knowledge and perfection.&rdquo;
+                </blockquote>
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">
+                    P</div>
+                  <div>
+                    <div class="font-semibold text-white">Priya Sharma</div>
+                    <div class="text-sm text-slate-500">Engineering Director, Innovation Labs</div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div
+                class="testimonial-slide glass rounded-3xl p-8 md:p-12 border border-slate-800 relative overflow-hidden">
+                <div class="absolute top-8 right-8 opacity-10"><i data-lucide="quote"
+                    class="w-24 h-24 text-blue-500"></i></div>
+
+                <div class="flex gap-1 mb-6"><i data-lucide="sparkles"
+                    class="w-5 h-5 text-amber-400 fill-amber-400"></i><i data-lucide="sparkles"
+                    class="w-5 h-5 text-amber-400 fill-amber-400"></i><i data-lucide="sparkles"
+                    class="w-5 h-5 text-amber-400 fill-amber-400"></i><i data-lucide="sparkles"
+                    class="w-5 h-5 text-amber-400 fill-amber-400"></i><i data-lucide="sparkles"
+                    class="w-5 h-5 text-amber-400 fill-amber-400"></i></div>
+
+                <blockquote class="text-xl md:text-2xl text-slate-300 leading-relaxed mb-8 relative z-10">&ldquo;The
+                  animation and VFX work delivered by Symbiosys exceeded our expectations. Their attention to detail and
+                  creative vision transformed our project completely.&rdquo;</blockquote>
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">
+                    M</div>
+                  <div>
+                    <div class="font-semibold text-white">Michael Chen</div>
+                    <div class="text-sm text-slate-500">Creative Director, Studio Max</div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="flex justify-center gap-3 mt-8">
+              <button
+                class="testimonial-dot w-3 h-3 rounded-full bg-slate-700 hover:bg-slate-600 transition-all duration-300 w-3 h-3 rounded-full bg-slate-700 hover:bg-slate-600 transition-all duration-300"></button>
+              <button
+                class="testimonial-dot w-3 h-3 rounded-full bg-slate-700 hover:bg-slate-600 transition-all duration-300 w-3 h-3 rounded-full bg-slate-700 hover:bg-slate-600 transition-all duration-300"></button>
+              <button
+                class="testimonial-dot w-3 h-3 rounded-full bg-slate-700 hover:bg-slate-600 transition-all duration-300 w-3 h-3 rounded-full bg-slate-700 hover:bg-slate-600 transition-all duration-300"></button>
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- Contact Section -->
+
+        <section id="contact" data-section class="relative py-32 overflow-hidden">
+          <div class="absolute inset-0 z-0">
+            <div class="absolute bottom-0 left-0 right-0 h-[500px] bg-gradient-to-t from-blue-600/10 to-transparent">
+            </div>
+          </div>
+
+          <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16">
+              <div class="reveal-left">
+                <span
+                  class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-cyan-400 mb-6"><i
+                    data-lucide="external-link" class="w-4 h-4"></i> Get In Touch</span>
+                <h2 class="text-4xl md:text-5xl font-bold font-display mb-6">Let's Build Something<span
+                    class="block gradient-text">Extraordinary Together</span></h2>
+                <p class="text-lg text-slate-400 mb-12">Ready to transform your ideas into reality? Our team of experts
+                  is here to help you achieve your technology goals.</p>
+                <div class="space-y-6">
+                  <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center"><i
+                        data-lucide="map-pin" class="w-5 h-5 text-blue-400"></i></div>
+                    <div>
+                      <div class="text-sm text-slate-500">Location</div>
+                      <div class="text-white font-medium">India & United States</div>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center"><i
+                        data-lucide="mail" class="w-5 h-5 text-blue-400"></i></div>
+                    <div>
+                      <div class="text-sm text-slate-500">Email</div>
+                      <div class="text-white font-medium">info@symbiosystech.com</div>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center"><i
+                        data-lucide="phone" class="w-5 h-5 text-blue-400"></i></div>
+                    <div>
+                      <div class="text-sm text-slate-500">Phone</div>
+                      <div class="text-white font-medium">+1 (555) 123-4567</div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="glass rounded-3xl p-8 border border-slate-800 reveal-right">
+                <form class="space-y-6" onsubmit="event.preventDefault()">
+                  <div class="grid grid-cols-2 gap-6">
+                    <div><label class="block text-sm font-medium text-slate-400 mb-2">First Name</label><input
+                        type="text"
+                        class="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+                        placeholder="John"></div>
+
+                    <div><label class="block text-sm font-medium text-slate-400 mb-2">Last Name</label><input
+                        type="text"
+                        class="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+                        placeholder="Doe"></div>
+
+                  </div>
+
+                  <div><label class="block text-sm font-medium text-slate-400 mb-2">Email</label><input type="email"
+                      class="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+                      placeholder="john@company.com"></div>
+
+                  <div><label class="block text-sm font-medium text-slate-400 mb-2">Service Interest</label><select
+                      class="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700 text-white focus:outline-none focus:border-blue-500 transition-colors">
+                      <option value="">Select a service</option>
+                      <option value="animation">Animation & VFX</option>
+                      <option value="testing">Testing Services</option>
+                      <option value="publishing">Publishing Services</option>
+                      <option value="it">IT Solutions</option>
+                      <option value="engineering">Engineering Services</option>
+                    </select></div>
+
+                  <div><label class="block text-sm font-medium text-slate-400 mb-2">Message</label><textarea rows="4"
+                      class="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors resize-none"
+                      placeholder="Tell us about your project..."></textarea></div>
+
+                  <button type="submit" class="w-full btn-primary py-4 text-lg"><span>Send Message</span><i
+                      data-lucide="chevron-right" class="w-5 h-5 inline-block ml-2"></i></button>
+                </form>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+
+    <footer class="relative py-20 border-t border-slate-800/50 mt-auto">
+      <div class="absolute inset-0 z-0 overflow-hidden">
+        <div class="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-blue-600/5 rounded-full blur-[150px]"></div>
+
+        <div class="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-purple-600/5 rounded-full blur-[150px]"></div>
+
+      </div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 lg:grid-cols-6 gap-12 mb-16">
+          <div class="lg:col-span-2">
+            <a href="index.html" class="flex items-center gap-3 mb-6">
+              <div class="w-40 h-auto flex items-center justify-center"><img src="../assets/symbiosys-logo.png"
+                  alt="Symbiosys Logo" class="w-full" onerror="this.src='assets/symbiosys-logo.png'"></div>
+            </a>
+            <p class="text-slate-400 text-sm leading-relaxed mb-6">Delivering world-class technology solutions across
+              IT, engineering, and creative services for global enterprises since 2008.</p>
+            <div class="flex gap-4">
+              <a href="#"
+                class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"><span
+                  class="text-xs font-bold">L</span></a>
+              <a href="#"
+                class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"><span
+                  class="text-xs font-bold">T</span></a>
+              <a href="#"
+                class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"><span
+                  class="text-xs font-bold">Y</span></a>
+              <a href="#"
+                class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"><span
+                  class="text-xs font-bold">G</span></a>
+            </div>
+
+          </div>
+
+          <div>
+            <h4 class="text-white font-semibold mb-4 capitalize">services</h4>
+            <ul class="space-y-3">
+              <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Animation & VFX</a></li>
+              <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Testing Services</a>
+              </li>
+              <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Publishing</a></li>
+              <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">IT Solutions</a></li>
+              <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Engineering</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-white font-semibold mb-4 capitalize">company</h4>
+            <ul class="space-y-3">
+              <li><a href="about.html" class="text-sm text-slate-400 hover:text-white transition-colors">About Us</a>
+              </li>
+              <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Careers</a></li>
+              <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Blog</a></li>
+              <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Press</a></li>
+              <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Partners</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-white font-semibold mb-4 capitalize">resources</h4>
+            <ul class="space-y-3">
+              <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Documentation</a></li>
+              <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Case Studies</a></li>
+              <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Whitepapers</a></li>
+              <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Webinars</a></li>
+              <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Support</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-white font-semibold mb-4 capitalize">legal</h4>
+            <ul class="space-y-3">
+              <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Privacy Policy</a></li>
+              <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Terms of Service</a>
+              </li>
+              <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Cookie Policy</a></li>
+              <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Security</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="pt-8 border-t border-slate-800/50 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p class="text-sm text-slate-500">&copy; <span id="footer-year"></span> Symbiosys Technologies. All rights
+            reserved.</p>
+          <div class="flex items-center gap-4"><a href="#"
+              class="text-sm text-slate-400 hover:text-white transition-colors">Privacy</a><a href="#"
+              class="text-sm text-slate-400 hover:text-white transition-colors">Terms</a><a href="#"
+              class="text-sm text-slate-400 hover:text-white transition-colors">Cookies</a></div>
+
+        </div>
+
+      </div>
+
+    </footer>
+
+  </div>
+
+  <script>
+    // Populate client marquees
+    const clients = ['Google', 'AMD', 'Trimble', 'FIS', 'CSC', 'Kentz', 'Cambridge Systems', 'Reliance', 'L&T', 'Technip', 'Disney India', 'Prime Focus', 'Reel FX', 'Sony Television', 'Titmouse', 'Zagtoon', 'Framebreed', 'Grid Animation'];
+    const clientsReversed = [...clients].reverse();
+    function createClientCard(name, gradient) {
+      return '<div class="shrink-0 glass px-8 py-6 rounded-xl border border-slate-800 hover:border-slate-700 transition-colors group"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-lg bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center ' + gradient + ' transition-all duration-300"><span class="text-sm font-bold text-white">' + name.charAt(0) + '</span></div><span class="text-lg font-semibold text-slate-300 group-hover:text-white transition-colors whitespace-nowrap">' + name + '</span></div></div>';
+    }
+    const m1 = document.getElementById('clients-marquee-1');
+    const m2 = document.getElementById('clients-marquee-2');
+    if (m1) m1.innerHTML = [...clients, ...clients].map(c => createClientCard(c, 'group-hover:from-blue-600 group-hover:to-purple-600')).join('');
+    if (m2) m2.innerHTML = [...clientsReversed, ...clientsReversed].map(c => createClientCard(c, 'group-hover:from-purple-600 group-hover:to-pink-600')).join('');
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1.6.16/dist/hls.min.js"></script>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script type="module" src="js/home.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Contact Symbiosys Technologies - Get in touch with our team." />
+    <meta name="theme-color" content="#0a0a0f" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap-compat.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <title>Contact | Symbiosys Technologies</title>
+    <script
+        type="importmap"> { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.185.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.185.0/examples/jsm/" } } </script>
+
+</head>
+
+<body>
+    <div class="relative min-h-screen bg-[#0a0a0f] text-white overflow-x-hidden flex flex-col">
+        <div class="noise-overlay"></div>
+
+        <nav id="main-nav"
+            class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-6 bg-transparent nav-entrance">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="flex items-center justify-between">
+                    <a href="index.html" class="flex items-center gap-3 group">
+                        <div
+                            class="w-40 h-auto flex items-center justify-center group-hover:shadow-blue-500/30 transition-shadow duration-300">
+                            <img src="assets/symbiosys-logo.svg" alt="Symbiosys Logo" class="w-full"
+                                onerror="this.src='assets/symbiosys-logo.png'">
+                        </div>
+
+                    </a>
+                    <div class="hidden lg:flex items-center gap-8">
+                        <a href="index.html" data-nav-link="home"
+                            class="relative text-sm font-medium transition-colors duration-300 text-slate-400 hover:text-white">Home</a>
+                        <div class="nav-dropdown-wrapper">
+                            <a href="services.html" data-nav-link="services"
+                                class="relative text-sm font-medium transition-colors duration-300 text-slate-400 hover:text-white flex items-center gap-1">Services
+                                <i data-lucide="chevron-down" class="w-4 h-4"></i></a>
+                            <div class="nav-dropdown">
+                                <a href="#" class="nav-dropdown-item">Engineering Services</a>
+                                <a href="#" class="nav-dropdown-item">Animation & VFX</a>
+                                <a href="#" class="nav-dropdown-item">Geospatial Services</a>
+                                <a href="#" class="nav-dropdown-item">Testing Services</a>
+                                <div class="nav-sub-dropdown-wrapper">
+                                    <a href="#" class="nav-dropdown-item flex justify-between items-center">Publishing
+                                        Services</a>
+                                    <div class="nav-sub-dropdown">
+                                        <a href="#" class="nav-dropdown-item">Digital Conversion</a>
+                                        <a href="#" class="nav-dropdown-item">Editorial Services</a>
+                                        <a href="#" class="nav-dropdown-item">Project Management</a>
+                                        <a href="#" class="nav-dropdown-item">Typesetting</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="about.html" data-nav-link="about"
+                            class="relative text-sm font-medium transition-colors duration-300 text-slate-400 hover:text-white">About</a>
+                        <a href="contact.html" data-nav-link="contact"
+                            class="relative text-sm font-medium transition-colors duration-300 text-slate-400 hover:text-white">Contact</a>
+                    </div>
+
+                    <div class="hidden lg:flex items-center gap-4">
+                        <a href="contact.html" class="btn-primary text-sm"><span>Get Started</span></a>
+                    </div>
+
+                    <button id="mobile-menu-btn" class="lg:hidden p-2 text-white" aria-label="Toggle menu">
+                        <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
+                        <i data-lucide="x" id="close-icon" class="w-6 h-6 hidden"></i>
+                    </button>
+                </div>
+
+            </div>
+
+        </nav>
+
+        <div id="mobile-menu" class="mobile-menu-overlay lg:hidden">
+            <div id="mobile-menu-backdrop" class="absolute inset-0 bg-slate-950/95 backdrop-blur-xl"></div>
+
+            <div class="mobile-menu-content relative flex flex-col items-center justify-center h-full gap-8">
+                <a href="index.html" data-close-mobile-menu
+                    class="mobile-menu-link text-2xl font-display font-semibold text-white hover:text-blue-400 transition-colors">Home</a>
+                <a href="services.html" data-close-mobile-menu
+                    class="mobile-menu-link text-2xl font-display font-semibold text-white hover:text-blue-400 transition-colors">Services</a>
+                <a href="about.html" data-close-mobile-menu
+                    class="mobile-menu-link text-2xl font-display font-semibold text-white hover:text-blue-400 transition-colors">About</a>
+                <a href="contact.html" data-close-mobile-menu
+                    class="mobile-menu-link text-2xl font-display font-semibold text-white hover:text-blue-400 transition-colors">Contact</a>
+                <a href="contact.html" data-close-mobile-menu
+                    class="mobile-menu-link mobile-menu-cta btn-primary mt-4 inline-flex"><span>Get Started</span></a>
+            </div>
+
+        </div>
+
+        <main class="flex-grow">
+            <div class="relative min-h-screen overflow-x-hidden">
+                <div id="canvas-container"></div>
+
+                <!-- Globe Video Overlay -->
+
+                <div class="globe-video-overlay">
+                    <video id="globe-video" autoplay muted loop playsinline
+                        data-hls-src="https://stream.mux.com/BuGGTsiXq1T00WUb8qfURrHkTCbhrkfFLSv4uAOZzdhw.m3u8"></video>
+                </div>
+
+                <!-- Hero Section -->
+
+                <section id="hero" data-section
+                    class="relative min-h-screen flex items-center justify-center overflow-hidden">
+                    <div id="neural-network-canvas" class="absolute inset-0 z-0"></div>
+
+                    <div class="absolute inset-0 z-10">
+                        <div
+                            class="absolute top-0 left-0 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[150px] animate-pulse-glow">
+                        </div>
+
+                        <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[150px] animate-pulse-glow"
+                            style="animation-delay: 2s"></div>
+
+                        <div
+                            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-cyan-600/10 rounded-full blur-[200px]">
+                        </div>
+
+                    </div>
+
+                    <div class="absolute inset-0 z-10 grid-pattern opacity-30"></div>
+
+                    <div class="hero-parallax-content relative z-20 w-full max-w-7xl mx-auto px-6 lg:px-8">
+                        <div id="hero-carousel-track" class="hero-carousel-track">
+                            <div class="hero-slide" data-slide="0">
+                                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8"><i
+                                        data-lucide="sparkles" class="w-4 h-4 text-blue-400"></i><span
+                                        class="text-sm font-medium text-slate-300">General</span></div>
+
+                                <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold font-display leading-tight mb-6">
+                                    <span class="block text-white">Drop Your Message</span><span
+                                        class="block gradient-text">info@symbiosystech.com</span>
+                                </h1>
+                                <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed">We
+                                    would love to hear from you! Whether you have a question, need support, or want to
+                                    discuss a project, our team is here to help.</p>
+                                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                                    <button data-cta-section="contact"
+                                        class="btn-primary group flex items-center gap-2 text-lg"><span>Contact
+                                            now</span><i data-lucide="arrow-right"
+                                            class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i></button>
+                                </div>
+
+                            </div>
+
+                            <div class="hero-slide" data-slide="1">
+                                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8"><i
+                                        data-lucide="sparkles" class="w-4 h-4 text-blue-400"></i><span
+                                        class="text-sm font-medium text-slate-300">Engineering</span></div>
+
+                                <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold font-display leading-tight mb-6">
+                                    <span class="block text-white">For Engineering Services</span><span
+                                        class="block gradient-text">esd@symbiosystech.com</span>
+                                </h1>
+                                <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed">
+                                    Contact our engineering experts to discuss your project requirements and get a
+                                    detailed quote.</p>
+                                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                                    <button data-cta-section="contact"
+                                        class="btn-primary group flex items-center gap-2 text-lg"><span>Contact
+                                            now</span><i data-lucide="arrow-right"
+                                            class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i></button>
+                                </div>
+
+                            </div>
+
+                            <div class="hero-slide" data-slide="2">
+                                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8"><i
+                                        data-lucide="sparkles" class="w-4 h-4 text-blue-400"></i><span
+                                        class="text-sm font-medium text-slate-300">Main Office</span></div>
+
+                                <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold font-display leading-tight mb-6">
+                                    <span class="block text-white">IT Park, Rushikonda</span><span
+                                        class="block gradient-text">Visakhapatnam</span>
+                                </h1>
+                                <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed">
+                                    Alternatively, fill out the contact form below, and we will get back to you as soon
+                                    as possible. We aim to respond within one business day.</p>
+                                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                                    <button data-cta-section="services"
+                                        class="btn-primary group flex items-center gap-2 text-lg"><span>Location</span><i
+                                            data-lucide="arrow-right"
+                                            class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i></button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <button id="hero-prev-slide" aria-label="Previous slide"
+                            class="absolute left-0 top-1/2 -translate-y-1/2 z-30 flex items-center justify-center w-12 h-12 rounded-full glass border border-white/10 text-white hover:bg-white/10 hover:border-white/30 hover:scale-110 transition-all duration-300 shadow-lg"
+                            style="margin-left: -0.5rem"><i data-lucide="chevron-right"
+                                class="w-5 h-5 rotate-180"></i></button>
+                        <button id="hero-next-slide" aria-label="Next slide"
+                            class="absolute right-0 top-1/2 -translate-y-1/2 z-30 flex items-center justify-center w-12 h-12 rounded-full glass border border-white/10 text-white hover:bg-white/10 hover:border-white/30 hover:scale-110 transition-all duration-300 shadow-lg"
+                            style="margin-right: -0.5rem"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
+                        <div class="flex items-center justify-center gap-3 mt-10">
+                            <button
+                                class="hero-dot w-2.5 h-2.5 rounded-full bg-slate-600 hover:bg-slate-400 transition-all duration-300"
+                                aria-label="Go to slide 1"></button>
+                            <button
+                                class="hero-dot w-2.5 h-2.5 rounded-full bg-slate-600 hover:bg-slate-400 transition-all duration-300"
+                                aria-label="Go to slide 2"></button>
+                            <button
+                                class="hero-dot w-2.5 h-2.5 rounded-full bg-slate-600 hover:bg-slate-400 transition-all duration-300"
+                                aria-label="Go to slide 3"></button>
+                        </div>
+
+                    </div>
+
+                    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20">
+                        <div class="flex flex-col items-center gap-2">
+                            <span class="text-xs text-slate-500 uppercase tracking-widest">Scroll</span>
+                            <div
+                                class="w-6 h-10 rounded-full border-2 border-slate-600 flex items-start justify-center p-1">
+                                <div class="w-1.5 h-1.5 rounded-full bg-blue-500 scroll-dot-bounce"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- Services / Map Section -->
+
+                <section id="services" data-section class="relative py-32 overflow-hidden">
+                    <div class="absolute inset-0 z-0">
+                        <div
+                            class="absolute top-1/4 right-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[150px]">
+                        </div>
+
+                        <div
+                            class="absolute bottom-1/4 left-0 w-[400px] h-[400px] bg-blue-600/10 rounded-full blur-[150px]">
+                        </div>
+
+                    </div>
+
+                    <div class="relative z-10 w-full mx-auto mask-img">
+                        <div class="text-center mb-20 reveal-up">
+                            <img src="assets/map.png" style="width: 100%;" alt="World Map">
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- Contact Section -->
+
+                <section id="contact" data-section class="relative py-32 overflow-hidden">
+                    <div class="absolute inset-0 z-0">
+                        <div
+                            class="absolute bottom-0 left-0 right-0 h-[500px] bg-gradient-to-t from-blue-600/10 to-transparent">
+                        </div>
+                    </div>
+
+                    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+                        <div class="grid lg:grid-cols-2 gap-16">
+                            <div class="reveal-left">
+                                <span
+                                    class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-cyan-400 mb-6"><i
+                                        data-lucide="external-link" class="w-4 h-4"></i> Get In Touch</span>
+                                <h2 class="text-4xl md:text-5xl font-bold font-display mb-6">Let's Build Something<span
+                                        class="block gradient-text">Extraordinary Together</span></h2>
+                                <p class="text-lg text-slate-400 mb-12">Ready to transform your ideas into reality? Our
+                                    team of experts is here to help you achieve your technology goals.</p>
+                                <div class="space-y-6">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center">
+                                            <i data-lucide="map-pin" class="w-5 h-5 text-blue-400"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-sm text-slate-500">Location</div>
+                                            <div class="text-white font-medium">India & United States</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center">
+                                            <i data-lucide="mail" class="w-5 h-5 text-blue-400"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-sm text-slate-500">Email</div>
+                                            <div class="text-white font-medium">info@symbiosystech.com</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center">
+                                            <i data-lucide="phone" class="w-5 h-5 text-blue-400"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-sm text-slate-500">Phone</div>
+                                            <div class="text-white font-medium">+1 (555) 123-4567</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="glass rounded-3xl p-8 border border-slate-800 reveal-right">
+                                <form class="space-y-6" onsubmit="event.preventDefault()">
+                                    <div class="grid grid-cols-2 gap-6">
+                                        <div><label class="block text-sm font-medium text-slate-400 mb-2">First
+                                                Name</label><input type="text"
+                                                class="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+                                                placeholder="John"></div>
+
+                                        <div><label class="block text-sm font-medium text-slate-400 mb-2">Last
+                                                Name</label><input type="text"
+                                                class="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+                                                placeholder="Doe"></div>
+
+                                    </div>
+
+                                    <div><label
+                                            class="block text-sm font-medium text-slate-400 mb-2">Email</label><input
+                                            type="email"
+                                            class="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+                                            placeholder="john@company.com"></div>
+
+                                    <div><label class="block text-sm font-medium text-slate-400 mb-2">Service
+                                            Interest</label><select
+                                            class="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700 text-white focus:outline-none focus:border-blue-500 transition-colors">
+                                            <option value="">Select a service</option>
+                                            <option value="animation">Animation & VFX</option>
+                                            <option value="testing">Testing Services</option>
+                                            <option value="publishing">Publishing Services</option>
+                                            <option value="it">IT Solutions</option>
+                                            <option value="engineering">Engineering Services</option>
+                                        </select></div>
+
+                                    <div><label
+                                            class="block text-sm font-medium text-slate-400 mb-2">Message</label><textarea
+                                            rows="4"
+                                            class="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors resize-none"
+                                            placeholder="Tell us about your project..."></textarea></div>
+
+                                    <button type="submit" class="w-full btn-primary py-4 text-lg"><span>Send
+                                            Message</span><i data-lucide="chevron-right"
+                                            class="w-5 h-5 inline-block ml-2"></i></button>
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </main>
+
+        <footer class="relative py-20 border-t border-slate-800/50 mt-auto">
+            <div class="absolute inset-0 z-0 overflow-hidden">
+                <div class="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-blue-600/5 rounded-full blur-[150px]">
+                </div>
+
+                <div class="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-purple-600/5 rounded-full blur-[150px]">
+                </div>
+
+            </div>
+
+            <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="grid md:grid-cols-2 lg:grid-cols-6 gap-12 mb-16">
+                    <div class="lg:col-span-2">
+                        <a href="index.html" class="flex items-center gap-3 mb-6">
+                            <div class="w-40 h-auto flex items-center justify-center"><img
+                                    src="assets/symbiosys-logo.svg" alt="Symbiosys Logo" class="w-full"
+                                    onerror="this.src='assets/symbiosys-logo.png'"></div>
+                        </a>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">Delivering world-class technology
+                            solutions across IT, engineering, and creative services for global enterprises since 2008.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="#"
+                                class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"><span
+                                    class="text-xs font-bold">L</span></a>
+                            <a href="#"
+                                class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"><span
+                                    class="text-xs font-bold">T</span></a>
+                            <a href="#"
+                                class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"><span
+                                    class="text-xs font-bold">Y</span></a>
+                            <a href="#"
+                                class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"><span
+                                    class="text-xs font-bold">G</span></a>
+                        </div>
+
+                    </div>
+
+                    <div>
+                        <h4 class="text-white font-semibold mb-4 capitalize">services</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Animation
+                                    & VFX</a></li>
+                            <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Testing
+                                    Services</a></li>
+                            <li><a href="#"
+                                    class="text-sm text-slate-400 hover:text-white transition-colors">Publishing</a>
+                            </li>
+                            <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">IT
+                                    Solutions</a></li>
+                            <li><a href="#"
+                                    class="text-sm text-slate-400 hover:text-white transition-colors">Engineering</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="text-white font-semibold mb-4 capitalize">company</h4>
+                        <ul class="space-y-3">
+                            <li><a href="about.html"
+                                    class="text-sm text-slate-400 hover:text-white transition-colors">About Us</a></li>
+                            <li><a href="#"
+                                    class="text-sm text-slate-400 hover:text-white transition-colors">Careers</a></li>
+                            <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Blog</a>
+                            </li>
+                            <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Press</a>
+                            </li>
+                            <li><a href="#"
+                                    class="text-sm text-slate-400 hover:text-white transition-colors">Partners</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="text-white font-semibold mb-4 capitalize">resources</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#"
+                                    class="text-sm text-slate-400 hover:text-white transition-colors">Documentation</a>
+                            </li>
+                            <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Case
+                                    Studies</a></li>
+                            <li><a href="#"
+                                    class="text-sm text-slate-400 hover:text-white transition-colors">Whitepapers</a>
+                            </li>
+                            <li><a href="#"
+                                    class="text-sm text-slate-400 hover:text-white transition-colors">Webinars</a></li>
+                            <li><a href="#"
+                                    class="text-sm text-slate-400 hover:text-white transition-colors">Support</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="text-white font-semibold mb-4 capitalize">legal</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Privacy
+                                    Policy</a></li>
+                            <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Terms of
+                                    Service</a></li>
+                            <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Cookie
+                                    Policy</a></li>
+                            <li><a href="#"
+                                    class="text-sm text-slate-400 hover:text-white transition-colors">Security</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div
+                    class="pt-8 border-t border-slate-800/50 flex flex-col md:flex-row items-center justify-between gap-4">
+                    <p class="text-sm text-slate-500">&copy; <span id="footer-year"></span> Symbiosys Technologies. All
+                        rights reserved.</p>
+                    <div class="flex items-center gap-4"><a href="#"
+                            class="text-sm text-slate-400 hover:text-white transition-colors">Privacy</a><a href="#"
+                            class="text-sm text-slate-400 hover:text-white transition-colors">Terms</a><a href="#"
+                            class="text-sm text-slate-400 hover:text-white transition-colors">Cookies</a></div>
+
+                </div>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.6.16/dist/hls.min.js"></script>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+
+
+</body>
+
+</html>
